@@ -37,8 +37,8 @@ public class Player {
         this.Center[0] = x;
         this.Center[1] = y;
 
-        this.X += (x - (Width / 2));
-        this.Y += (y - (Height / 2));
+        this.X += (int) (Center[0] - ((double) Width / 2));
+        this.Y += (int) (Center[1] - ((double) Height / 2));
     }
 
     public int getVelocityX(){return VelocityX;}
