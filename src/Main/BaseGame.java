@@ -1,17 +1,17 @@
+package Main;
+
+import GameEditor.GameEditor;
+
 import javax.swing.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import GameEditor.GameEditor;
+public class BaseGame extends JFrame {
 
-public class Main { public static void main(String[] args) {new BaseGame();}}
+    static GameEditor GE = new GameEditor();
 
-class BaseGame extends JFrame{
-
-    GameEditor GE = new GameEditor();
-
-    JPanel World = GE.World();
-    Timer Repaint, MovPlayer;
+    public static JPanel World = GE.World();
+    java.util.Timer Repaint;
 
     public BaseGame(){
         setLayout(null);

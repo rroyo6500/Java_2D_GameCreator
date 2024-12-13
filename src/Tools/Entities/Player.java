@@ -17,7 +17,18 @@ public class Player {
         this.Y = y;
 
         this.Center[0] = (x + (double) (width / 2));
-        this.Center[1] = (Y + (double) (height / 2));
+        this.Center[1] = (y + (double) (height / 2));
+    }
+
+    public Player(double CenterX, double CenterY, int width, int height){
+        this.Width = width;
+        this.Height = height;
+
+        this.Center[0] = (CenterX);
+        this.Center[1] = (CenterY);
+
+        this.X = (int) (CenterX - ((double) width / 2));
+        this.Y = (int) (CenterY - ((double) height / 2));
     }
 
     public void setVelocity(int x, int y){
