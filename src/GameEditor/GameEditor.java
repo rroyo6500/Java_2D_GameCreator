@@ -10,8 +10,8 @@ import java.awt.*;
 public class GameEditor {
 
     private final Collide collide = new Collide();
-    private final Player pj = new Player(225, 0, 50, 50);
-    private final Platform plataforma1 = new Platform(245, 450, 10, 10);
+    private final Player pj = new Player(450, 225, 50, 50);
+    private final Platform plataforma1 = new Platform(245, 245, 10, 10);
 
     public static int FrameRate = 60;
 
@@ -26,7 +26,7 @@ public class GameEditor {
             protected void paintComponent(Graphics g){
                 super.paintComponent(g);
 
-                pj.setVelocity(0, pj.getVelocityY() + 1);
+                pj.setVelocity(pj.getVelocityX() - 1, 0);
                 if (pj.getY() > (Height - pj.getHeight())){
                     pj.setY(Height - pj.getHeight());
                 }

@@ -19,8 +19,10 @@ public class Collide {
             player.setVelocity(player.getVelocityX(), 0);
             player.setY(platform.getY() - player.getHeight());
         } else if (CollideLeft(player, platform)){
+            player.setVelocity(0, player.getVelocityY());
             player.setX(platform.getX() - player.getWidth());
         } else if (CollideRight(player, platform)){
+            player.setVelocity(0, player.getVelocityY());
             player.setX((platform.getX() + platform.getWidth()));
         }
     }
@@ -54,16 +56,18 @@ public class Collide {
     }
     private boolean CollideLeft(Player player, Platform platform){
         return (
-                ((player.getCenter("X") + ((double) player.getWidth() / 2)) <= platform.getX()) &&
-                ((player.getCenter("X") + ((double) player.getWidth() / 2)) <= GameEditor.Width) &&
+                ((player.getCenter("X") - ((double) player.getWidth() / 2)) <= (platform.getX() + platform.getWidth())) &&
+                ((player.getCenter("X") - ((double) player.getWidth() / 2)) <= GameEditor.Width) &&
+                ((player.getCenter("X") - ((double) player.getWidth() / 2)) >= ((platform.getX() + platform.getWidth()) - ((double) player.getWidth() / 2))) &&
                 ((player.getCenter("Y") - (double) (player.getHeight()) / 2) <= (platform.getY() + platform.getHeight())) &&
                 (player.getCenter("Y") + ((double) player.getHeight() / 2) >= platform.getY())
         );
     }
     private boolean CollideRight(Player player, Platform platform){
         return (
-                ((player.getCenter("X") - ((double) player.getWidth() / 2)) >= (platform.getX() + platform.getWidth())) &&
-                ((player.getCenter("X") - ((double) player.getWidth() / 2)) >= 0) &&
+                ((player.getCenter("X") + ((double) player.getWidth() / 2)) >= platform.getX()) &&
+                ((player.getCenter("X") + ((double) player.getWidth() / 2)) >= 0) &&
+                ((player.getCenter("X") + ((double) player.getWidth() / 2)) <= (platform.getX() + ((double) player.getWidth() / 2))) &&
                 ((player.getCenter("Y") - (double) (player.getHeight()) / 2) <= (platform.getY() + platform.getHeight())) &&
                 (player.getCenter("Y") + ((double) player.getHeight() / 2) >= platform.getY())
         );
