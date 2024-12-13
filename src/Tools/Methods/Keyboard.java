@@ -11,6 +11,7 @@ import java.util.Set;
 public class Keyboard {
 
     private final Set<Integer> activeKeys = new HashSet<>();
+    private final Set<String> LactiveKeys = new HashSet<>();
 
     JPanel world;
 
@@ -25,11 +26,13 @@ public class Keyboard {
                         @Override
                         public void keyPressed(KeyEvent e) {
                             activeKeys.add(e.getKeyCode());
+                            LactiveKeys.add(KeyEvent.getKeyText(e.getKeyCode()));
                         }
 
                         @Override
                         public void keyReleased(KeyEvent e) {
                             activeKeys.remove(e.getKeyCode());
+                            LactiveKeys.remove(KeyEvent.getKeyText(e.getKeyCode()));
                         }
                     });
                     break;
@@ -59,6 +62,10 @@ public class Keyboard {
 
     public boolean getCustomKey(int KeyCode){
         return activeKeys.contains(KeyCode);
+    }
+
+    public boolean getCustomKey(String Key){
+        return LactiveKeys.contains(Key);
     }
 
 }

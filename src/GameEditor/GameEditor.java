@@ -29,9 +29,9 @@ public class GameEditor {
                 super.paintComponent(g);
 
                 if (keyboard.getUpKey()) pj.setVelocity(0, -2);
-                if (keyboard.getDownKey()) pj.setVelocity(0, 2);
-                if (keyboard.getLeftKey()) pj.setVelocity(-2, 0);
-                if (keyboard.getRightKey()) pj.setVelocity(2, 0);
+                if (keyboard.getCustomKey(40)) pj.setVelocity(0, 2);
+                if (keyboard.getCustomKey("Left")) pj.setVelocity(-2, 0);
+                if (keyboard.getCustomKey("Right")) pj.setVelocity(2, 0);
 
                 collide.Player_Collide(pj, plataforma1, true);
 
