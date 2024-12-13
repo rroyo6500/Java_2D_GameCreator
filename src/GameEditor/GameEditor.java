@@ -14,7 +14,7 @@ public class GameEditor {
 
     private final Keyboard keyboard = new Keyboard();
     private final Collide collide = new Collide();
-    private final Player pj = new Player(225, 450, 50, 50);
+    private final Player pj = new Player(245, 490, 10, 10);
     private final Platform plataforma1 = new Platform(245, 245, 10, 10);
 
     public static int FrameRate = 60;
@@ -28,12 +28,14 @@ public class GameEditor {
             protected void paintComponent(Graphics g){
                 super.paintComponent(g);
 
-                if (keyboard.getUpKey()) pj.setVelocity(0, -2);
-                if (keyboard.getCustomKey(40)) pj.setVelocity(0, 2);
-                if (keyboard.getCustomKey("Left")) pj.setVelocity(-2, 0);
-                if (keyboard.getCustomKey("Right")) pj.setVelocity(2, 0);
+                if (keyboard.getUpKey() || keyboard.getCustomKey("W")) pj.setVelocity(0, -2);
+                if (keyboard.getDownKey() || keyboard.getCustomKey("S")) pj.setVelocity(0, 2);
+                if (keyboard.getLeftKey() || keyboard.getCustomKey("A")) pj.setVelocity(-2, 0);
+                if (keyboard.getRightKey() || keyboard.getCustomKey("D")) pj.setVelocity(2, 0);
 
-                collide.Player_Collide(pj, plataforma1, true);
+                pj.setVelocity(0, -1);
+
+                collide.Player_Collide(pj, plataforma1);
 
                 g.setColor(pj.getPlayerColor());
                 g.fillRect(pj.getX(), pj.getY(), pj.getWidth(), pj.getHeight());
