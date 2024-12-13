@@ -14,8 +14,12 @@ public class GameEditor {
 
     private final Keyboard keyboard = new Keyboard();
     private final Collide collide = new Collide();
-    private final Player pj = new Player(490, 245, 10, 10);
-    private final Platform plataforma1 = new Platform(245, 245, 10, 10);
+    private final Player pj = new Player(250, 0, 50, 50);
+    private final Platform plataforma1 = new Platform(245, 245, 100, 100);
+
+    /*      AVISO:
+            -> El correcto funcionamiento de las colisiones depende del tamaño de la plaraforma (Platform) y el Juegador | Enemigo (Player | Enemy)
+     */
 
     public static int FrameRate = 60;
 
@@ -33,9 +37,7 @@ public class GameEditor {
                 if (keyboard.getLeftKey() || keyboard.getCustomKey("A")) pj.setVelocity(-2, 0);
                 if (keyboard.getRightKey() || keyboard.getCustomKey("D")) pj.setVelocity(2, 0);
 
-                pj.setVelocity(-1, 0);
-
-                collide.Player_Collide(pj, plataforma1);
+                collide.Collide(pj, plataforma1, "all");
 
                 g.setColor(pj.getPlayerColor());
                 g.fillRect(pj.getX(), pj.getY(), pj.getWidth(), pj.getHeight());
