@@ -9,6 +9,7 @@ public class Player {
     private final double[] Center = new double[2];
     private final double[][] Faces = new double[4][2];
     private int VelocityX, VelocityY;
+    private boolean Alive = true;
     private Color PlayerColor = Color.CYAN;
 
     public Player(int x, int y, int width, int height){
@@ -130,6 +131,9 @@ public class Player {
         else if (x_y.equalsIgnoreCase("Y")) R = Faces[3][1];
         return R;
     }
+
+    public void setAlive(boolean Alive){this.Alive = Alive;}
+    public boolean getAlive(){return Alive;}
 
     public void setPlayerColor(Color color){this.PlayerColor = color;}
     public Color getPlayerColor(){return PlayerColor;}

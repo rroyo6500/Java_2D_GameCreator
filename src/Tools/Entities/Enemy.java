@@ -9,7 +9,8 @@ public class Enemy {
     private final double[] Center = new double[2];
     private final double[][] Faces = new double[4][2];
     private int VelocityX, VelocityY;
-    private Color EnemyColor;
+    private boolean Alive = true;
+    private Color EnemyColor = Color.RED;
 
     public Enemy(int x, int y, int width, int height){
         this.Width = width;
@@ -132,6 +133,9 @@ public class Enemy {
         else if (x_y.equalsIgnoreCase("Y")) R = Faces[3][1];
         return R;
     }
+
+    public void setAlive(boolean Alive){this.Alive = Alive;}
+    public boolean getAlive(){return Alive;}
 
     public void setEnemyColor(Color color){this.EnemyColor = color;}
     public Color getEnemyColor(){return EnemyColor;}

@@ -2,6 +2,7 @@ package GameEditor;
 
 import Tools.Entities.Player;
 import Tools.Methods.Collide;
+import Tools.Methods.Draw;
 import Tools.Methods.Keyboard;
 import Tools.World.Platform;
 
@@ -12,8 +13,10 @@ public class GameEditor {
 
     public GameEditor(){}
 
-    private final Keyboard keyboard = new Keyboard();
-    private final Collide collide = new Collide();
+    private final Draw D = new Draw();
+    private final Keyboard K = new Keyboard();
+    private final Collide C = new Collide();
+
     private final Player pj = new Player(250, 0, 50, 50);
     private final Platform plataforma1 = new Platform(245, 245, 100, 100);
 
@@ -32,18 +35,16 @@ public class GameEditor {
             protected void paintComponent(Graphics g){
                 super.paintComponent(g);
 
-                if (keyboard.getUpKey() || keyboard.getCustomKey("W")) pj.setVelocity(0, -2);
-                if (keyboard.getDownKey() || keyboard.getCustomKey("S")) pj.setVelocity(0, 2);
-                if (keyboard.getLeftKey() || keyboard.getCustomKey("A")) pj.setVelocity(-2, 0);
-                if (keyboard.getRightKey() || keyboard.getCustomKey("D")) pj.setVelocity(2, 0);
+                if (K.getUpKey() || K.getCustomKey("W")) pj.setVelocity(0, -1);
+                if (K.getDownKey() || K.getCustomKey("S")) pj.setVelocity(0, 1);
+                if (K.getLeftKey() || K.getCustomKey("A")) pj.setVelocity(-1, 0);
+                if (K.getRightKey() || K.getCustomKey("D")) pj.setVelocity(1, 0);
 
-                collide.Collide(pj, plataforma1, "all");
+                if (C.Collide_B(pj, plataforma1)) D.delete(pj);
 
-                g.setColor(pj.getPlayerColor());
-                g.fillRect(pj.getX(), pj.getY(), pj.getWidth(), pj.getHeight());
+                D.draw(g, pj);
 
-                g.setColor(plataforma1.getPlatformColor());
-                g.fillRect(plataforma1.getX(), plataforma1.getY(), plataforma1.getWidth(), plataforma1.getHeight());
+                D.draw(g, plataforma1, plataforma1.getPlatformColor());
 
             }
         };

@@ -1,6 +1,5 @@
 package Tools.Methods;
 
-import GameEditor.GameEditor;
 import Tools.Entities.Enemy;
 import Tools.Entities.Player;
 import Tools.World.Platform;
