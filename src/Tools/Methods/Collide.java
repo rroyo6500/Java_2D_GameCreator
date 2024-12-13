@@ -40,7 +40,7 @@ public class Collide {
         return (
                 ((player.getCenter("Y") - ((double) player.getHeight() / 2)) <= (platform.getY() + platform.getHeight())) &&
                 ((player.getCenter("Y") - ((double) player.getHeight() / 2)) <= GameEditor.Height) &&
-                ((player.getCenter("Y") - ((double) player.getHeight() / 2)) >= ((platform.getY() + platform.getHeight()) - ((double) player.getHeight() / 2))) &&
+                ((player.getCenter("Y") - ((double) player.getHeight() / 2)) >= platform.getY()) &&
                 ((player.getCenter("X") - (double) (player.getWidth()) / 2) <= (platform.getX() + platform.getWidth())) &&
                 (player.getCenter("X") + ((double) player.getWidth() / 2) >= platform.getX())
         );
@@ -49,7 +49,7 @@ public class Collide {
         return (
                 ((player.getCenter("Y") + ((double) player.getHeight() / 2)) >= platform.getY()) &&
                 ((player.getCenter("Y") + ((double) player.getHeight() / 2)) >= 0) &&
-                ((player.getCenter("Y") + ((double) player.getHeight() / 2)) <= (platform.getY() + ((double) player.getHeight() / 2))) &&
+                ((player.getCenter("Y") + ((double) player.getHeight() / 2)) <= (platform.getY() + platform.getHeight())) &&
                 ((player.getCenter("X") - (double) (player.getWidth()) / 2) <= (platform.getX() + platform.getWidth())) &&
                 (player.getCenter("X") + ((double) player.getWidth() / 2) >= platform.getX())
         );
@@ -58,7 +58,7 @@ public class Collide {
         return (
                 ((player.getCenter("X") + ((double) player.getWidth() / 2)) >= platform.getX()) &&
                 ((player.getCenter("X") + ((double) player.getWidth() / 2)) >= 0) &&
-                ((player.getCenter("X") + ((double) player.getWidth() / 2)) <= (platform.getX() + ((double) player.getWidth() / 2))) &&
+                ((player.getCenter("X") + ((double) player.getWidth() / 2)) <= (platform.getX() + platform.getWidth())) &&
                 ((player.getCenter("Y") - (double) (player.getHeight()) / 2) <= (platform.getY() + platform.getHeight())) &&
                 (player.getCenter("Y") + ((double) player.getHeight() / 2) >= platform.getY())
         );
@@ -67,7 +67,7 @@ public class Collide {
         return (
                 ((player.getCenter("X") - ((double) player.getWidth() / 2)) <= (platform.getX() + platform.getWidth())) &&
                 ((player.getCenter("X") - ((double) player.getWidth() / 2)) <= GameEditor.Width) &&
-                ((player.getCenter("X") - ((double) player.getWidth() / 2)) >= ((platform.getX() + platform.getWidth()) - ((double) player.getWidth() / 2))) &&
+                ((player.getCenter("X") - ((double) player.getWidth() / 2)) >= (platform.getX())) &&
                 ((player.getCenter("Y") - (double) (player.getHeight()) / 2) <= (platform.getY() + platform.getHeight())) &&
                 (player.getCenter("Y") + ((double) player.getHeight() / 2) >= platform.getY())
         );
