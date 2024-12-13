@@ -35,34 +35,34 @@ public class Collide {
 
     private boolean CollideDown(Player player, Platform platform){
         return (
-                (player.getY() <= (platform.getY() + platform.getHeight())) &&
-                (player.getY() >= ((platform.getY() + platform.getHeight()) - player.getVelocityY())) &&
-                ((player.getCenter("X") - (double) (player.getWidth()) / 2) <= (platform.getX() + platform.getWidth())) &&
-                (player.getCenter("X") + ((double) player.getWidth() / 2) >= platform.getX())
+                ((player.getCenter()[1] - ((double) player.getHeight() / 2)) <= (platform.getY() + platform.getHeight())) &&
+                ((player.getCenter()[1] - ((double) player.getHeight() / 2)) >= (platform.getCenter()[1]) &&
+                ((player.getCenter()[0] - (double) (player.getWidth()) / 2) <= (platform.getX() + platform.getWidth())) &&
+                (player.getCenter()[0] + ((double) player.getWidth() / 2) >= platform.getX()))
         );
     }
     private boolean CollideUp(Player player, Platform platform){
         return (
-                ((player.getY() + player.getHeight()) >= platform.getY()) &&
-                ((player.getY() + player.getHeight()) <= (platform.getY() + player.getVelocityY())) &&
-                ((player.getCenter("X") - (double) (player.getWidth()) / 2) <= (platform.getX() + platform.getWidth())) &&
-                (player.getCenter("X") + ((double) player.getWidth() / 2) >= platform.getX())
+                ((player.getCenter()[1] + ((double) player.getHeight() / 2)) >= platform.getY()) &&
+                ((player.getCenter()[1] + ((double) player.getHeight() / 2)) <= (platform.getY() + platform.getHeight())) &&
+                ((player.getCenter()[0] - (double) (player.getWidth()) / 2) <= (platform.getX() + platform.getWidth())) &&
+                (player.getCenter()[0] + ((double) player.getWidth() / 2) >= platform.getX())
         );
     }
     private boolean CollideLeft(Player player, Platform platform){
         return (
-                ((player.getX() + player.getWidth()) >= platform.getX()) &&
-                ((player.getX() + player.getWidth()) <= (platform.getX() + player.getVelocityX())) &&
-                ((player.getCenter("Y") - (double) (player.getHeight()) / 2) <= (platform.getY() + platform.getHeight())) &&
-                (player.getCenter("Y") + ((double) player.getHeight() / 2) >= platform.getY())
+                ((player.getCenter()[0] + ((double) player.getWidth() / 2)) >= platform.getX()) &&
+                ((player.getCenter()[0] + ((double) player.getWidth() / 2)) <= platform.getX() + 5) &&
+                ((player.getCenter()[1] - (double) (player.getHeight()) / 2) <= (platform.getY() + platform.getHeight())) &&
+                (player.getCenter()[1] + ((double) player.getHeight() / 2) >= platform.getY())
         );
     }
     private boolean CollideRight(Player player, Platform platform){
         return (
-                (player.getX() <= (platform.getX() + platform.getWidth())) &&
-                (player.getX() >= ((platform.getX() + platform.getWidth()) - player.getVelocityX())) &&
-                ((player.getCenter("Y") - (double) (player.getHeight()) / 2) <= (platform.getY() + platform.getHeight())) &&
-                (player.getCenter("Y") + ((double) player.getHeight() / 2) >= platform.getY())
+                ((player.getCenter()[0] - ((double) player.getWidth() / 2)) <= (platform.getX() + platform.getWidth())) &&
+                ((player.getCenter()[0] - ((double) player.getWidth() / 2)) >= (platform.getX() + platform.getWidth()) - 5) &&
+                ((player.getCenter()[1] - (double) (player.getHeight()) / 2) <= (platform.getY() + platform.getHeight())) &&
+                (player.getCenter()[1] + ((double) player.getHeight() / 2) >= platform.getY())
         );
     }
 

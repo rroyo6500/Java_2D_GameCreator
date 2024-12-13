@@ -55,9 +55,13 @@ public class Player {
     public int getVelocityX(){return VelocityX;}
     public int getVelocityY(){return VelocityY;}
     public double getCenter(String x_y){
-        if (x_y.equalsIgnoreCase("X")) return Center[0];
-        else if (x_y.equalsIgnoreCase("Y")) return Center[1];
-        return 0;
+        double R = 0;
+        if (x_y.equalsIgnoreCase("X")) R = Center[0];
+        else if (x_y.equalsIgnoreCase("Y")) R = Center[1];
+        return R;
+    }
+    public double[] getCenter(){
+        return Center;
     }
     public int getX(){return X;}
     public int getY(){return Y;}

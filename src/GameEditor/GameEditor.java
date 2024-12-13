@@ -14,7 +14,7 @@ public class GameEditor {
 
     private final Keyboard keyboard = new Keyboard();
     private final Collide collide = new Collide();
-    private final Player pj = new Player(245, 490, 10, 10);
+    private final Player pj = new Player(490, 245, 10, 10);
     private final Platform plataforma1 = new Platform(245, 245, 10, 10);
 
     public static int FrameRate = 60;
@@ -33,7 +33,7 @@ public class GameEditor {
                 if (keyboard.getLeftKey() || keyboard.getCustomKey("A")) pj.setVelocity(-2, 0);
                 if (keyboard.getRightKey() || keyboard.getCustomKey("D")) pj.setVelocity(2, 0);
 
-                pj.setVelocity(0, -1);
+                pj.setVelocity(-1, 0);
 
                 collide.Player_Collide(pj, plataforma1);
 
