@@ -10,6 +10,8 @@ import java.awt.*;
 
 public class GameEditor {
 
+    public GameEditor(){}
+
     private final Keyboard keyboard = new Keyboard();
     private final Collide collide = new Collide();
     private final Player pj = new Player(225, 450, 50, 50);
@@ -19,8 +21,6 @@ public class GameEditor {
 
     public static int Width = 500, Height = 500;
     public static Color BgColor = Color.black;
-
-    public GameEditor(){}
 
     public JPanel World(){
         return new JPanel() {
