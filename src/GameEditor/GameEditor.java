@@ -26,9 +26,11 @@ public class GameEditor {
     Enemy enemy = new Enemy(475, 475, 25, 25);
 
     /*      AVISO:
-            --> El correcto funcionamiento de las colisiones depende del tamaño de la plaraforma (Platform) y el Juegador | Enemigo (Player | Enemy)
-
-            --> Si un enemigo tiene mas de 1 de HP revisa que cuando deva perder vida deje de estar en contacto con lo que le quite vida. Si continua en contacto la vida baja 60 puntos/s
+            --> Por defecto los Enemigos tienen uno de HP.
+                En caso de que se le ponga una cantidad custom verifica que al momento de perder puntos de HP deje de estar en contacto con el jugador y/o lo que le quiete puntos de HP.
+                Si continua en contacto los puntos de HP bajaran a la mima belocidad que el FrameRate
+                    FrameRate = 60
+                    HP -> -60 / Segundo
      */
 
     public static int FrameRate = 60;
