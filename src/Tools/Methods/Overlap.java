@@ -110,28 +110,60 @@ public class Overlap {
         return (
                 (
                         (colectable.getVertex(0, "x") <= player.getFaceRight("x")) &&
-                                (colectable.getVertex(0, "x") >= player.getFaceLeft("x")) &&
-                                (colectable.getVertex(0, "y") <= player.getFaceDown("y")) &&
-                                (colectable.getVertex(0, "y") >= player.getFaceUp("y"))
+                        (colectable.getVertex(0, "x") >= player.getFaceLeft("x")) &&
+                        (colectable.getVertex(0, "y") <= player.getFaceDown("y")) &&
+                        (colectable.getVertex(0, "y") >= player.getFaceUp("y"))
                 ) ||
-                        (
-                                (colectable.getVertex(1, "x") <= player.getFaceRight("x")) &&
-                                        (colectable.getVertex(1, "x") >= player.getFaceLeft("x")) &&
-                                        (colectable.getVertex(1, "y") <= player.getFaceDown("y")) &&
-                                        (colectable.getVertex(1, "y") >= player.getFaceUp("y"))
-                        ) ||
-                        (
-                                (colectable.getVertex(2, "x") <= player.getFaceRight("x")) &&
-                                        (colectable.getVertex(2, "x") >= player.getFaceLeft("x")) &&
-                                        (colectable.getVertex(2, "y") <= player.getFaceDown("y")) &&
-                                        (colectable.getVertex(2, "y") >= player.getFaceUp("y"))
-                        ) ||
-                        (
-                                (colectable.getVertex(3, "x") <= player.getFaceRight("x")) &&
-                                        (colectable.getVertex(3, "x") >= player.getFaceLeft("x")) &&
-                                        (colectable.getVertex(3, "y") <= player.getFaceDown("y")) &&
-                                        (colectable.getVertex(3, "y") >= player.getFaceUp("y"))
-                        )
+                (
+                        (colectable.getVertex(1, "x") <= player.getFaceRight("x")) &&
+                        (colectable.getVertex(1, "x") >= player.getFaceLeft("x")) &&
+                        (colectable.getVertex(1, "y") <= player.getFaceDown("y")) &&
+                        (colectable.getVertex(1, "y") >= player.getFaceUp("y"))
+                ) ||
+                (
+                        (colectable.getVertex(2, "x") <= player.getFaceRight("x")) &&
+                        (colectable.getVertex(2, "x") >= player.getFaceLeft("x")) &&
+                        (colectable.getVertex(2, "y") <= player.getFaceDown("y")) &&
+                        (colectable.getVertex(2, "y") >= player.getFaceUp("y"))
+                ) ||
+                (
+                        (colectable.getVertex(3, "x") <= player.getFaceRight("x")) &&
+                        (colectable.getVertex(3, "x") >= player.getFaceLeft("x")) &&
+                        (colectable.getVertex(3, "y") <= player.getFaceDown("y")) &&
+                        (colectable.getVertex(3, "y") >= player.getFaceUp("y"))
+                )
+        );
+    }
+
+    //----------------------------------------------------------------------------------------------------------------------
+
+    // Colectable - Player
+    public boolean overlap(Enemy enemy, Player player){
+        return (
+                (
+                        (enemy.getVertex(0, "x") <= player.getFaceRight("x")) &&
+                        (enemy.getVertex(0, "x") >= player.getFaceLeft("x")) &&
+                        (enemy.getVertex(0, "y") <= player.getFaceDown("y")) &&
+                        (enemy.getVertex(0, "y") >= player.getFaceUp("y"))
+                ) ||
+                (
+                        (enemy.getVertex(1, "x") <= player.getFaceRight("x")) &&
+                        (enemy.getVertex(1, "x") >= player.getFaceLeft("x")) &&
+                        (enemy.getVertex(1, "y") <= player.getFaceDown("y")) &&
+                        (enemy.getVertex(1, "y") >= player.getFaceUp("y"))
+                ) ||
+                (
+                        (enemy.getVertex(2, "x") <= player.getFaceRight("x")) &&
+                        (enemy.getVertex(2, "x") >= player.getFaceLeft("x")) &&
+                        (enemy.getVertex(2, "y") <= player.getFaceDown("y")) &&
+                        (enemy.getVertex(2, "y") >= player.getFaceUp("y"))
+                ) ||
+                (
+                        (enemy.getVertex(3, "x") <= player.getFaceRight("x")) &&
+                        (enemy.getVertex(3, "x") >= player.getFaceLeft("x")) &&
+                        (enemy.getVertex(3, "y") <= player.getFaceDown("y")) &&
+                        (enemy.getVertex(3, "y") >= player.getFaceUp("y"))
+                )
         );
     }
 }

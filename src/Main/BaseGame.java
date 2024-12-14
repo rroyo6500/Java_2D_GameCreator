@@ -30,6 +30,7 @@ public class BaseGame extends JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     public void IniciarJuego(){
