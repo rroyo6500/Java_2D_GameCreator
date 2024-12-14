@@ -377,4 +377,97 @@ public class Collide {
                 (enemy.getFaceDown("y") >= (enemy1.getFaceUp("y") + 4))
         );
     }
+
+    //----------------------------------------------------------------------------------------------------------------------
+
+    // Enemy - Player
+    public boolean collide(Enemy enemy, Player player, String ColisionType){
+        boolean R = false;
+        if (ColisionType.equalsIgnoreCase("down") || ColisionType.equalsIgnoreCase("all")){
+            if (collideDown(enemy, player)){
+                R = true;
+                enemy.setVelocity(0, 0);
+                enemy.setY((player.getY() + player.getHeight()));
+            }
+        }
+        if (ColisionType.equalsIgnoreCase("up") || ColisionType.equalsIgnoreCase("all")){
+            if (collideUp(enemy, player)){
+                R = true;
+                enemy.setVelocity(0, 0);
+                enemy.setY(player.getY() - enemy.getHeight());
+            }
+        }
+        if (ColisionType.equalsIgnoreCase("left") || ColisionType.equalsIgnoreCase("all")){
+            if (collideLeft(enemy, player)){
+                R = true;
+                enemy.setVelocity(0, 0);
+                enemy.setX(player.getX() - enemy.getWidth());
+            }
+        }
+        if (ColisionType.equalsIgnoreCase("right") || ColisionType.equalsIgnoreCase("all")){
+            if (collideRight(enemy, player)){
+                R = true;
+                enemy.setVelocity(0, 0);
+                enemy.setX((player.getX() + player.getWidth()));
+            }
+        }
+        return R;
+    }
+
+    private boolean collideDown(Enemy enemy, Player player){
+        return (
+                (enemy.getFaceUp("y") <= player.getFaceDown("y")) &&
+                (
+                        (
+                               (enemy.getCenter("y") >= player.getFaceDown("y")) ||
+                               (enemy.getCenter("y") <= player.getFaceDown("y"))
+                        ) &&
+                       (enemy.getFaceDown("y") >= player.getFaceDown("y"))
+                ) &&
+                (enemy.getFaceLeft("x") <= (player.getFaceRight("x") - 4)) &&
+                (enemy.getFaceRight("x") >= (player.getFaceLeft("x") + 4))
+        );
+    }
+    private boolean collideUp(Enemy enemy, Player player){
+        return (
+                (enemy.getFaceDown("y") >= player.getFaceUp("y")) &&
+                (
+                        (
+                                (enemy.getCenter("y") <= player.getFaceUp("y")) ||
+                                (enemy.getCenter("y") >= player.getFaceUp("y"))
+                        ) &&
+                        (enemy.getFaceUp("y") <= player.getFaceUp("y"))
+                ) &&
+                (enemy.getFaceLeft("x") <= (player.getFaceRight("x") - 4)) &&
+                (enemy.getFaceRight("x") >= (player.getFaceLeft("x") + 4))
+        );
+    }
+    private boolean collideLeft(Enemy enemy, Player player){
+        return (
+                (enemy.getFaceRight("x") >= player.getFaceLeft("x")) &&
+                (
+                        (
+                                (enemy.getCenter("X") <= player.getFaceLeft("x")) ||
+                                (enemy.getCenter("x") >= player.getFaceLeft("x"))
+                        ) &&
+                        (enemy.getFaceLeft("x") <= player.getFaceLeft("x"))
+                ) &&
+                (enemy.getFaceUp("y") <= (player.getFaceDown("y") - 4)) &&
+                (enemy.getFaceDown("y") >= (player.getFaceUp("y") + 4))
+        );
+    }
+    private boolean collideRight(Enemy enemy, Player player){
+        return (
+                (enemy.getFaceLeft("x") <= player.getFaceRight("x")) &&
+                (
+                        (
+                                (enemy.getCenter("x") >= player.getFaceRight("x")) ||
+                                (enemy.getCenter("x") <= player.getFaceRight("x"))
+                        ) &&
+                        (enemy.getFaceRight("x") >= player.getFaceRight("x"))
+                ) &&
+                (enemy.getFaceUp("y") <= (player.getFaceDown("y") - 4)) &&
+                (enemy.getFaceDown("y") >= (player.getFaceUp("y") + 4))
+        );
+    }
 }
