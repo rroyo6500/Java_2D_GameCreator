@@ -10,6 +10,14 @@ public class Overlap {
     public Overlap(){}
 
     // Player - Enemy
+
+    /**
+     * Detecta cuando un objeto {@code [ Player | Colectable | Enemy | Platform ]} esta por encima o por debajo de otro.
+     *
+     * @param player
+     * @param enemy
+     * @return True or False
+     */
     public boolean overlap(Player player, Enemy enemy){
         return (
                 (
@@ -42,6 +50,13 @@ public class Overlap {
     //----------------------------------------------------------------------------------------------------------------------
 
     // Player - Colectable
+    /**
+     * Detecta cuando un objeto {@code [ Player | Colectable | Enemy | Platform ]} esta por encima o por debajo de otro.
+     *
+     * @param player
+     * @param colectable
+     * @return True or False
+     */
     public boolean overlap(Player player, Colectable colectable){
         return (
                 (
@@ -74,6 +89,13 @@ public class Overlap {
     //----------------------------------------------------------------------------------------------------------------------
 
     // Player - Platform
+    /**
+     * Detecta cuando un objeto {@code [ Player | Colectable | Enemy | Platform ]} esta por encima o por debajo de otro.
+     *
+     * @param player
+     * @param platform
+     * @return True or False
+     */
     public boolean overlap(Player player, Platform platform){
         return (
                 (
@@ -106,6 +128,14 @@ public class Overlap {
     //----------------------------------------------------------------------------------------------------------------------
 
     // Colectable - Player
+
+    /**
+     * Detecta cuando un objeto {@code [ Player | Colectable | Enemy | Platform ]} está por encima o por debajo de otro.
+     *
+     * @param colectable
+     * @param player
+     * @return True or False
+     */
     public boolean overlap(Colectable colectable, Player player){
         return (
                 (
@@ -138,6 +168,13 @@ public class Overlap {
     //----------------------------------------------------------------------------------------------------------------------
 
     // Colectable - Player
+    /**
+     * Detecta cuando un objeto {@code [ Player | Colectable | Enemy | Platform ]} esta por encima o por debajo de otro.
+     *
+     * @param enemy
+     * @param player
+     * @return True or False
+     */
     public boolean overlap(Enemy enemy, Player player){
         return (
                 (

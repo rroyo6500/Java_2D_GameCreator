@@ -1,5 +1,6 @@
 package GameEditor;
 
+import Main.Utils;
 import Tools.Entities.Enemy;
 import Tools.Entities.Player;
 import Tools.Methods.Collide;
@@ -16,6 +17,7 @@ public class GameEditor {
 
     public GameEditor(){}
 
+    private final Utils U = new Utils();
     private final Draw D = new Draw();
     private final Keyboard K = new Keyboard();
     private final Collide C = new Collide();
