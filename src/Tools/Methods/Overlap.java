@@ -102,4 +102,36 @@ public class Overlap {
                 )
         );
     }
+
+    //----------------------------------------------------------------------------------------------------------------------
+
+    // Colectable - Player
+    public boolean overlap(Colectable colectable, Player player){
+        return (
+                (
+                        (colectable.getVertex(0, "x") <= player.getFaceRight("x")) &&
+                                (colectable.getVertex(0, "x") >= player.getFaceLeft("x")) &&
+                                (colectable.getVertex(0, "y") <= player.getFaceDown("y")) &&
+                                (colectable.getVertex(0, "y") >= player.getFaceUp("y"))
+                ) ||
+                        (
+                                (colectable.getVertex(1, "x") <= player.getFaceRight("x")) &&
+                                        (colectable.getVertex(1, "x") >= player.getFaceLeft("x")) &&
+                                        (colectable.getVertex(1, "y") <= player.getFaceDown("y")) &&
+                                        (colectable.getVertex(1, "y") >= player.getFaceUp("y"))
+                        ) ||
+                        (
+                                (colectable.getVertex(2, "x") <= player.getFaceRight("x")) &&
+                                        (colectable.getVertex(2, "x") >= player.getFaceLeft("x")) &&
+                                        (colectable.getVertex(2, "y") <= player.getFaceDown("y")) &&
+                                        (colectable.getVertex(2, "y") >= player.getFaceUp("y"))
+                        ) ||
+                        (
+                                (colectable.getVertex(3, "x") <= player.getFaceRight("x")) &&
+                                        (colectable.getVertex(3, "x") >= player.getFaceLeft("x")) &&
+                                        (colectable.getVertex(3, "y") <= player.getFaceDown("y")) &&
+                                        (colectable.getVertex(3, "y") >= player.getFaceUp("y"))
+                        )
+        );
+    }
 }

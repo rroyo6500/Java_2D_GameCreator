@@ -91,6 +91,11 @@ public class Draw {
         player.setX(-10000000);
         player.setY(-10000000);
     }
+    public void delete(Colectable colectable){
+        colectable.setObtained(true);
+        colectable.setX(-10000000);
+        colectable.setY(-10000000);
+    }
     public void delete(Enemy enemy){enemy.hit();}
 
 }

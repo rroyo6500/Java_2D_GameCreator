@@ -54,6 +54,12 @@ public class Player {
     }
 
     public void setVelocity(int x, int y){
+
+        if (x > 48) x = 48;
+        if (x < -48) x = -48;
+        if (y > 48) y = 48;
+        if (y < -48) y = -48;
+
         this.VelocityX = x;
         this.VelocityY = y;
 

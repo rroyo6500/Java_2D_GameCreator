@@ -26,7 +26,7 @@ public class BaseGame extends JFrame {
         IniciarJuego();
 
         setTitle("Java - 2d_GameEditor");
-        setBounds(0,0,516,539);
+        setBounds(0,0,1016,1039);
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
