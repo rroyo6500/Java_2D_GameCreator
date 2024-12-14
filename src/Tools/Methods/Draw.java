@@ -2,6 +2,7 @@ package Tools.Methods;
 
 import Tools.Entities.Enemy;
 import Tools.Entities.Player;
+import Tools.World.Colectable;
 import Tools.World.Platform;
 
 import java.awt.*;
@@ -61,6 +62,21 @@ public class Draw {
             g.setColor(enemy.getEnemyColor());
             g.fillRect(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight());
         }
+
+        return g;
+    }
+
+    public Graphics draw(Graphics g, Colectable colectable, Color color){
+
+        g.setColor(color);
+        g.fillRect(colectable.getX(), colectable.getY(), colectable.getWidth(), colectable.getHeight());
+
+        return g;
+    }
+    public Graphics draw(Graphics g, Colectable colectable){
+
+        g.setColor(colectable.getColectableColor());
+        g.fillRect(colectable.getX(), colectable.getY(), colectable.getWidth(), colectable.getHeight());
 
         return g;
     }

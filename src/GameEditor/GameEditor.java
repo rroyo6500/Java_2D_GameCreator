@@ -4,6 +4,7 @@ import Tools.Entities.Player;
 import Tools.Methods.Collide;
 import Tools.Methods.Draw;
 import Tools.Methods.Keyboard;
+import Tools.World.Colectable;
 import Tools.World.Platform;
 
 import javax.swing.*;
@@ -19,6 +20,7 @@ public class GameEditor {
 
     private final Player pj = new Player(250, 0, 50, 50);
     private final Platform plataforma1 = new Platform(245, 245, 100, 100);
+    private final Colectable coin = new Colectable(10, 10, 10, 10);
 
     /*      AVISO:
             -> El correcto funcionamiento de las colisiones depende del tamaño de la plaraforma (Platform) y el Juegador | Enemigo (Player | Enemy)
@@ -40,7 +42,7 @@ public class GameEditor {
                 if (K.getLeftKey() || K.getCustomKey("A")) pj.setVelocity(-1, 0);
                 if (K.getRightKey() || K.getCustomKey("D")) pj.setVelocity(1, 0);
 
-                if (C.Collide_B(pj, plataforma1)) D.delete(pj);
+                D.draw(g, coin);
 
                 D.draw(g, pj);
 
