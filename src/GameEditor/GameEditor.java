@@ -46,8 +46,6 @@ public class GameEditor {
                 if (K.getLeftKey() || K.getCustomKey("A")) pj.setVelocity(-2, 0);
                 if (K.getRightKey() || K.getCustomKey("D")) pj.setVelocity(2, 0);
 
-                C.collide(pj, platform, "all");
-
                 D.draw(g, pj);
 
                 D.draw(g, platform);
