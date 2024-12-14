@@ -9,43 +9,43 @@ public class Collide {
     public Collide(){}
 
     // Player - Platform
-    public void Collide(Player player, Platform platform, String ColisionType){
+    public void collide(Player player, Platform platform, String ColisionType){
         if (ColisionType.equalsIgnoreCase("down") || ColisionType.equalsIgnoreCase("all")){
-            if (CollideDown(player, platform)){
+            if (collideDown(player, platform)){
                 player.setVelocity(0, 0);
                 player.setY((platform.getY() + platform.getHeight()));
             }
         }
         if (ColisionType.equalsIgnoreCase("up") || ColisionType.equalsIgnoreCase("all")){
-            if (CollideUp(player, platform)){
+            if (collideUp(player, platform)){
                 player.setVelocity(0, 0);
                 player.setY(platform.getY() - player.getHeight());
             }
         }
         if (ColisionType.equalsIgnoreCase("left") || ColisionType.equalsIgnoreCase("all")){
-            if (CollideLeft(player, platform)){
+            if (collideLeft(player, platform)){
                 player.setVelocity(0, 0);
                 player.setX(platform.getX() - player.getWidth());
             }
         }
         if (ColisionType.equalsIgnoreCase("right") || ColisionType.equalsIgnoreCase("all")){
-            if (CollideRight(player, platform)){
+            if (collideRight(player, platform)){
                 player.setVelocity(0, 0);
                 player.setX((platform.getX() + platform.getWidth()));
             }
         }
     }
 
-    public boolean Collide_B(Player player, Platform platform){
+    public boolean collide_B(Player player, Platform platform){
         return (
-                CollideDown(player, platform) ||
-                CollideUp(player, platform) ||
-                CollideLeft(player, platform) ||
-                CollideRight(player, platform)
+                collideDown(player, platform) ||
+                collideUp(player, platform) ||
+                collideLeft(player, platform) ||
+                collideRight(player, platform)
         );
     }
 
-    private boolean CollideDown(Player player, Platform platform){
+    private boolean collideDown(Player player, Platform platform){
         return (
                 (player.getFaceUp("y") <= platform.getFaceDown("y")) &&
                 (
@@ -59,7 +59,7 @@ public class Collide {
                 (player.getFaceRight("x") >= (platform.getFaceLeft("x") + 4))
         );
     }
-    private boolean CollideUp(Player player, Platform platform){
+    private boolean collideUp(Player player, Platform platform){
         return (
                 (player.getFaceDown("y") >= platform.getFaceUp("y")) &&
                 (
@@ -73,7 +73,7 @@ public class Collide {
                 (player.getFaceRight("x") >= (platform.getFaceLeft("x") + 4))
         );
     }
-    private boolean CollideLeft(Player player, Platform platform){
+    private boolean collideLeft(Player player, Platform platform){
         return (
                 (player.getFaceRight("x") >= platform.getFaceLeft("x")) &&
                 (
@@ -87,7 +87,7 @@ public class Collide {
                 (player.getFaceDown("y") >= (platform.getFaceUp("y") + 4))
         );
     }
-    private boolean CollideRight(Player player, Platform platform){
+    private boolean collideRight(Player player, Platform platform){
         return (
                 (player.getFaceLeft("x") <= platform.getFaceRight("x")) &&
                 (
@@ -105,43 +105,43 @@ public class Collide {
 //----------------------------------------------------------------------------------------------------------------------
 
     // Player - Player
-    public void Collide(Player player, Player player1, String ColisionType){
+    public void collide(Player player, Player player1, String ColisionType){
         if (ColisionType.equalsIgnoreCase("down") || ColisionType.equalsIgnoreCase("all")){
-            if (CollideDown(player, player1)){
+            if (collideDown(player, player1)){
                 player.setVelocity(0, 0);
                 player.setY((player1.getY() + player1.getHeight()));
             }
         }
         if (ColisionType.equalsIgnoreCase("up") || ColisionType.equalsIgnoreCase("all")){
-            if (CollideUp(player, player1)){
+            if (collideUp(player, player1)){
                 player.setVelocity(0, 0);
                 player.setY(player1.getY() - player.getHeight());
             }
         }
         if (ColisionType.equalsIgnoreCase("left") || ColisionType.equalsIgnoreCase("all")){
-            if (CollideLeft(player, player1)){
+            if (collideLeft(player, player1)){
                 player.setVelocity(0, 0);
                 player.setX(player1.getX() - player.getWidth());
             }
         }
         if (ColisionType.equalsIgnoreCase("right") || ColisionType.equalsIgnoreCase("all")){
-            if (CollideRight(player, player1)){
+            if (collideRight(player, player1)){
                 player.setVelocity(0, 0);
                 player.setX((player1.getX() + player1.getWidth()));
             }
         }
     }
 
-    public boolean Collide_B(Player player, Player player1){
+    public boolean collide_B(Player player, Player player1){
         return (
-                CollideDown(player, player1) ||
-                CollideUp(player, player1) ||
-                CollideLeft(player, player1) ||
-                CollideRight(player, player1)
+                collideDown(player, player1) ||
+                collideUp(player, player1) ||
+                collideLeft(player, player1) ||
+                collideRight(player, player1)
         );
     }
 
-    private boolean CollideDown(Player player, Player player1){
+    private boolean collideDown(Player player, Player player1){
         return (
                 (player.getFaceUp("y") <= player1.getFaceDown("y")) &&
                 (
@@ -155,7 +155,7 @@ public class Collide {
                 (player.getFaceRight("x") >= (player1.getFaceLeft("x") + 4))
         );
     }
-    private boolean CollideUp(Player player, Player player1){
+    private boolean collideUp(Player player, Player player1){
         return (
                 (player.getFaceDown("y") >= player1.getFaceUp("y")) &&
                 (
@@ -169,7 +169,7 @@ public class Collide {
                 (player.getFaceRight("x") >= (player1.getFaceLeft("x") + 4))
         );
     }
-    private boolean CollideLeft(Player player, Player player1){
+    private boolean collideLeft(Player player, Player player1){
         return (
                 (player.getFaceRight("x") >= player1.getFaceLeft("x")) &&
                 (
@@ -183,7 +183,7 @@ public class Collide {
                 (player.getFaceDown("y") >= (player1.getFaceUp("y") + 4))
         );
     }
-    private boolean CollideRight(Player player, Player player1){
+    private boolean collideRight(Player player, Player player1){
         return (
                 (player.getFaceLeft("x") <= player1.getFaceRight("x")) &&
                 (
@@ -201,43 +201,43 @@ public class Collide {
     //----------------------------------------------------------------------------------------------------------------------
 
     // Enemy - Platform
-    public void Collide(Enemy enemy, Platform platform, String ColisionType){
+    public void collide(Enemy enemy, Platform platform, String ColisionType){
         if (ColisionType.equalsIgnoreCase("down") || ColisionType.equalsIgnoreCase("all")){
-            if (CollideDown(enemy, platform)){
+            if (collideDown(enemy, platform)){
                 enemy.setVelocity(0, 0);
                 enemy.setY((platform.getY() + platform.getHeight()));
             }
         }
         if (ColisionType.equalsIgnoreCase("up") || ColisionType.equalsIgnoreCase("all")){
-            if (CollideUp(enemy, platform)){
+            if (collideUp(enemy, platform)){
                 enemy.setVelocity(0, 0);
                 enemy.setY(platform.getY() - enemy.getHeight());
             }
         }
         if (ColisionType.equalsIgnoreCase("left") || ColisionType.equalsIgnoreCase("all")){
-            if (CollideLeft(enemy, platform)){
+            if (collideLeft(enemy, platform)){
                 enemy.setVelocity(0, 0);
                 enemy.setX(platform.getX() - enemy.getWidth());
             }
         }
         if (ColisionType.equalsIgnoreCase("right") || ColisionType.equalsIgnoreCase("all")){
-            if (CollideRight(enemy, platform)){
+            if (collideRight(enemy, platform)){
                 enemy.setVelocity(0, 0);
                 enemy.setX((platform.getX() + platform.getWidth()));
             }
         }
     }
 
-    public boolean Collide_B(Enemy enemy, Platform platform){
+    public boolean collide_B(Enemy enemy, Platform platform){
         return (
-                CollideDown(enemy, platform) ||
-                CollideUp(enemy, platform) ||
-                CollideLeft(enemy, platform) ||
-                CollideRight(enemy, platform)
+                collideDown(enemy, platform) ||
+                collideUp(enemy, platform) ||
+                collideLeft(enemy, platform) ||
+                collideRight(enemy, platform)
         );
     }
 
-    private boolean CollideDown(Enemy enemy, Platform platform){
+    private boolean collideDown(Enemy enemy, Platform platform){
         return (
                 (enemy.getFaceUp("y") <= platform.getFaceDown("y")) &&
                 (
@@ -251,7 +251,7 @@ public class Collide {
                 (enemy.getFaceRight("x") >= (platform.getFaceLeft("x") + 4))
         );
     }
-    private boolean CollideUp(Enemy enemy, Platform platform){
+    private boolean collideUp(Enemy enemy, Platform platform){
         return (
                 (enemy.getFaceDown("y") >= platform.getFaceUp("y")) &&
                 (
@@ -265,7 +265,7 @@ public class Collide {
                 (enemy.getFaceRight("x") >= (platform.getFaceLeft("x") + 4))
         );
     }
-    private boolean CollideLeft(Enemy enemy, Platform platform){
+    private boolean collideLeft(Enemy enemy, Platform platform){
         return (
                 (enemy.getFaceRight("x") >= platform.getFaceLeft("x")) &&
                 (
@@ -279,7 +279,7 @@ public class Collide {
                 (enemy.getFaceDown("y") >= (platform.getFaceUp("y") + 4))
         );
     }
-    private boolean CollideRight(Enemy enemy, Platform platform){
+    private boolean collideRight(Enemy enemy, Platform platform){
         return (
                 (enemy.getFaceLeft("x") <= platform.getFaceRight("x")) &&
                 (
@@ -297,43 +297,43 @@ public class Collide {
     //----------------------------------------------------------------------------------------------------------------------
 
     // Enemy - Platform
-    public void Collide(Enemy enemy, Enemy enemy1, String ColisionType){
+    public void collide(Enemy enemy, Enemy enemy1, String ColisionType){
         if (ColisionType.equalsIgnoreCase("down") || ColisionType.equalsIgnoreCase("all")){
-            if (CollideDown(enemy, enemy1)){
+            if (collideDown(enemy, enemy1)){
                 enemy.setVelocity(0, 0);
                 enemy.setY((enemy1.getY() + enemy1.getHeight()));
             }
         }
         if (ColisionType.equalsIgnoreCase("up") || ColisionType.equalsIgnoreCase("all")){
-            if (CollideUp(enemy, enemy1)){
+            if (collideUp(enemy, enemy1)){
                 enemy.setVelocity(0, 0);
                 enemy.setY(enemy1.getY() - enemy.getHeight());
             }
         }
         if (ColisionType.equalsIgnoreCase("left") || ColisionType.equalsIgnoreCase("all")){
-            if (CollideLeft(enemy, enemy1)){
+            if (collideLeft(enemy, enemy1)){
                 enemy.setVelocity(0, 0);
                 enemy.setX(enemy1.getX() - enemy.getWidth());
             }
         }
         if (ColisionType.equalsIgnoreCase("right") || ColisionType.equalsIgnoreCase("all")){
-            if (CollideRight(enemy, enemy1)){
+            if (collideRight(enemy, enemy1)){
                 enemy.setVelocity(0, 0);
                 enemy.setX((enemy1.getX() + enemy1.getWidth()));
             }
         }
     }
 
-    public boolean Collide_B(Enemy enemy, Enemy enemy1){
+    public boolean collide_B(Enemy enemy, Enemy enemy1){
         return (
-                CollideDown(enemy, enemy1) ||
-                CollideUp(enemy, enemy1) ||
-                CollideLeft(enemy, enemy1) ||
-                CollideRight(enemy, enemy1)
+                collideDown(enemy, enemy1) ||
+                collideUp(enemy, enemy1) ||
+                collideLeft(enemy, enemy1) ||
+                collideRight(enemy, enemy1)
         );
     }
 
-    private boolean CollideDown(Enemy enemy, Enemy enemy1){
+    private boolean collideDown(Enemy enemy, Enemy enemy1){
         return (
                 (enemy.getFaceUp("y") <= enemy1.getFaceDown("y")) &&
                 (
@@ -347,7 +347,7 @@ public class Collide {
                 (enemy.getFaceRight("x") >= (enemy1.getFaceLeft("x") + 4))
         );
     }
-    private boolean CollideUp(Enemy enemy, Enemy enemy1){
+    private boolean collideUp(Enemy enemy, Enemy enemy1){
         return (
                 (enemy.getFaceDown("y") >= enemy1.getFaceUp("y")) &&
                 (
@@ -361,7 +361,7 @@ public class Collide {
                 (enemy.getFaceRight("x") >= (enemy1.getFaceLeft("x") + 4))
         );
     }
-    private boolean CollideLeft(Enemy enemy, Enemy enemy1){
+    private boolean collideLeft(Enemy enemy, Enemy enemy1){
         return (
                 (enemy.getFaceRight("x") >= enemy1.getFaceLeft("x")) &&
                 (
@@ -375,7 +375,7 @@ public class Collide {
                 (enemy.getFaceDown("y") >= (enemy1.getFaceUp("y") + 4))
         );
     }
-    private boolean CollideRight(Enemy enemy, Enemy enemy1){
+    private boolean collideRight(Enemy enemy, Enemy enemy1){
         return (
                 (enemy.getFaceLeft("x") <= enemy1.getFaceRight("x")) &&
                 (

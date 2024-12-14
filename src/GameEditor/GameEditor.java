@@ -21,8 +21,8 @@ public class GameEditor {
     private final Collide C = new Collide();
     private final Overlap O = new Overlap();
 
-    Player pj = new Player(250, 0, 50, 50);
-    Enemy enemy = new Enemy(225, 225, 50, 50, 480);
+    Player pj = new Player(225, 0, 50, 50);
+    Platform platform = new Platform(200, 200, 100, 100);
 
     /*      AVISO:
             --> El correcto funcionamiento de las colisiones depende del tamaño de la plaraforma (Platform) y el Juegador | Enemigo (Player | Enemy)
@@ -47,7 +47,9 @@ public class GameEditor {
                 if (K.getRightKey() || K.getCustomKey("D")) pj.setVelocity(2, 0);
 
                 D.draw(g, pj);
-                D.draw(g, enemy);
+                if (!O.overlap(pj, platform)){
+                    D.draw(g, platform);
+                }
 
             }
         };

@@ -8,6 +8,7 @@ public class Colectable {
     private final int Width, Height;
     private final double[] Center = new double[2];
     private final double[][] Faces = new double[4][2];
+    private final int[][] Vertex = new int[4][2];
     private boolean Obtained = false;
     private Color ColectableColor = Color.YELLOW;
 
@@ -22,10 +23,14 @@ public class Colectable {
         this.Faces[2][0] = x; this.Faces[2][1] = (y + ((double) height / 2));
         this.Faces[3][0] = (x + width); this.Faces[3][1] = (y + ((double) height / 2));
 
+        this.Vertex[0][0] = x; this.Vertex[0][1] = y;
+        this.Vertex[1][0] = (x + width); this.Vertex[1][1] = y;
+        this.Vertex[2][0] = x; this.Vertex[2][1] = (y + height);
+        this.Vertex[3][0] = (x + width); this.Vertex[3][1] = (y + height);
+
         this.Center[0] = (x + (double) (width / 2));
         this.Center[1] = (Y + (double) (height / 2));
     }
-
     public Colectable(double CenterX, double CenterY, int width, int height){
         this.Width = width;
         this.Height = height;
@@ -40,6 +45,11 @@ public class Colectable {
         this.Faces[1][0] = (X + ((double) width / 2)); this.Faces[1][1] = (Y + height);
         this.Faces[2][0] = X; this.Faces[2][1] = (Y + ((double) height / 2));
         this.Faces[3][0] = (X + width); this.Faces[3][1] = (Y + ((double) height / 2));
+
+        this.Vertex[0][0] = X; this.Vertex[0][1] = Y;
+        this.Vertex[1][0] = (X + width); this.Vertex[1][1] = Y;
+        this.Vertex[2][0] = X; this.Vertex[2][1] = (Y + height);
+        this.Vertex[3][0] = (X + width); this.Vertex[3][1] = (Y + height);
     }
 
     public void setX(int x){
@@ -50,6 +60,11 @@ public class Colectable {
         this.Faces[1][0] = (x + ((double) Width / 2));
         this.Faces[2][0] = x;
         this.Faces[3][0] = (x + Width);
+
+        this.Vertex[0][0] = X;
+        this.Vertex[1][0] = (X + Width);
+        this.Vertex[2][0] = X;
+        this.Vertex[3][0] = (X + Width);
     }
     public void setY(int y){
         this.Y = y;
@@ -59,6 +74,11 @@ public class Colectable {
         this.Faces[1][1] = (y + Height);
         this.Faces[2][1] = (y + ((double) Height / 2));
         this.Faces[3][1] = (y + ((double) Height / 2));
+
+        this.Vertex[0][1] = Y;
+        this.Vertex[1][1] = Y;
+        this.Vertex[2][1] = (Y + Height);
+        this.Vertex[3][1] = (Y + Height);
     }
 
     public double getCenter(String x_y){
@@ -97,6 +117,13 @@ public class Colectable {
         double R = 0;
         if (x_y.equalsIgnoreCase("X")) R = Faces[3][0];
         else if (x_y.equalsIgnoreCase("Y")) R = Faces[3][1];
+        return R;
+    }
+
+    public int getVertex(int vertex, String x_y){
+        int R = 0;
+        if (x_y.equalsIgnoreCase("x")) R = Vertex[vertex][0];
+        else if (x_y.equalsIgnoreCase("y")) R = Vertex[vertex][1];
         return R;
     }
 
