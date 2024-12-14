@@ -8,6 +8,7 @@ public class Colectable {
     private final int Width, Height;
     private final double[] Center = new double[2];
     private final double[][] Faces = new double[4][2];
+    private boolean Obtained = false;
     private Color ColectableColor = Color.YELLOW;
 
     public Colectable(int x, int y, int width, int height){
@@ -98,6 +99,9 @@ public class Colectable {
         else if (x_y.equalsIgnoreCase("Y")) R = Faces[3][1];
         return R;
     }
+
+    public void setObtained(boolean Obtained){this.Obtained = Obtained;}
+    public boolean getObtained(){return Obtained;}
 
     public void setColectableColor(Color color){this.ColectableColor = color;}
     public Color getColectableColor(){return ColectableColor;}

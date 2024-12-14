@@ -68,15 +68,19 @@ public class Draw {
 
     public Graphics draw(Graphics g, Colectable colectable, Color color){
 
-        g.setColor(color);
-        g.fillRect(colectable.getX(), colectable.getY(), colectable.getWidth(), colectable.getHeight());
+        if (!colectable.getObtained()){
+            g.setColor(color);
+            g.fillRect(colectable.getX(), colectable.getY(), colectable.getWidth(), colectable.getHeight());
+        }
 
         return g;
     }
     public Graphics draw(Graphics g, Colectable colectable){
 
-        g.setColor(colectable.getColectableColor());
-        g.fillRect(colectable.getX(), colectable.getY(), colectable.getWidth(), colectable.getHeight());
+        if (!colectable.getObtained()){
+            g.setColor(colectable.getColectableColor());
+            g.fillRect(colectable.getX(), colectable.getY(), colectable.getWidth(), colectable.getHeight());
+        }
 
         return g;
     }

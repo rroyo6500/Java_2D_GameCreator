@@ -4,6 +4,7 @@ import Tools.Entities.Player;
 import Tools.Methods.Collide;
 import Tools.Methods.Draw;
 import Tools.Methods.Keyboard;
+import Tools.Methods.Overlap;
 import Tools.World.Colectable;
 import Tools.World.Platform;
 
@@ -17,6 +18,7 @@ public class GameEditor {
     private final Draw D = new Draw();
     private final Keyboard K = new Keyboard();
     private final Collide C = new Collide();
+    private final Overlap O = new Overlap();
 
     private final Player pj = new Player(250, 0, 50, 50);
     private final Platform plataforma1 = new Platform(245, 245, 100, 100);
