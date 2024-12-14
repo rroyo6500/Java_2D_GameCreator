@@ -67,6 +67,7 @@ public class GameEditor {
                 }
 
                 if (C.collide(pj, enemy, "up")){
+                    Suelo = true;
                     D.delete(enemy);
                 } else if (O.overlap(pj, enemy)) {
                     D.delete(pj);
@@ -83,6 +84,9 @@ public class GameEditor {
                 }
 
                 C.collide(pj, platform, "all");
+                if (C.collide(pj, platform, "up")){
+                    Suelo = true;
+                }
 
                 D.draw(g, coin);
                 D.draw(g, pj);
