@@ -1,5 +1,6 @@
 package GameEditor;
 
+import Tools.Entities.Enemy;
 import Tools.Entities.Player;
 import Tools.Methods.Collide;
 import Tools.Methods.Draw;
@@ -20,12 +21,13 @@ public class GameEditor {
     private final Collide C = new Collide();
     private final Overlap O = new Overlap();
 
-    private final Player pj = new Player(250, 0, 50, 50);
-    private final Platform plataforma1 = new Platform(245, 245, 100, 100);
-    private final Colectable coin = new Colectable(10, 10, 10, 10);
+    Player pj = new Player(250, 0, 50, 50);
+    Enemy enemy = new Enemy(225, 225, 50, 50, 480);
 
     /*      AVISO:
-            -> El correcto funcionamiento de las colisiones depende del tamaño de la plaraforma (Platform) y el Juegador | Enemigo (Player | Enemy)
+            --> El correcto funcionamiento de las colisiones depende del tamaño de la plaraforma (Platform) y el Juegador | Enemigo (Player | Enemy)
+
+            --> Si un enemigo tiene mas de 1 de HP revisa que cuando deva perder vida deje de estar en contacto con lo que le quite vida. Si continua en contacto la vida baja 60 puntos/s
      */
 
     public static int FrameRate = 60;
@@ -44,13 +46,8 @@ public class GameEditor {
                 if (K.getLeftKey() || K.getCustomKey("A")) pj.setVelocity(-2, 0);
                 if (K.getRightKey() || K.getCustomKey("D")) pj.setVelocity(2, 0);
 
-                C.Collide(pj, plataforma1, "all");
-
-                D.draw(g, coin);
-
                 D.draw(g, pj);
-
-                D.draw(g, plataforma1, plataforma1.getPlatformColor());
+                D.draw(g, enemy);
 
             }
         };

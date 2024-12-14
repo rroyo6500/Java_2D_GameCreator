@@ -10,6 +10,7 @@ public class Enemy {
     private final double[][] Faces = new double[4][2];
     private int VelocityX, VelocityY;
     private boolean Alive = true;
+    private int HP = 1;
     private Color EnemyColor = Color.RED;
 
     public Enemy(int x, int y, int width, int height){
@@ -26,7 +27,6 @@ public class Enemy {
         this.Center[0] = (x + (double) (width / 2));
         this.Center[1] = (Y + (double) (height / 2));
     }
-
     public Enemy(double CenterX, double CenterY, int width, int height){
         this.Width = width;
         this.Height = height;
@@ -41,6 +41,39 @@ public class Enemy {
         this.Faces[1][0] = (X + ((double) width / 2)); this.Faces[1][1] = (Y + height);
         this.Faces[2][0] = X; this.Faces[2][1] = (Y + ((double) height / 2));
         this.Faces[3][0] = (X + width); this.Faces[3][1] = (Y + ((double) height / 2));
+    }
+    public Enemy(int x, int y, int width, int height, int HP){
+        this.Width = width;
+        this.Height = height;
+        this.X = x;
+        this.Y = y;
+
+        this.Faces[0][0] = (x + ((double) width / 2)); this.Faces[0][1] = y;
+        this.Faces[1][0] = (x + ((double) width / 2)); this.Faces[1][1] = (y + height);
+        this.Faces[2][0] = x; this.Faces[2][1] = (y + ((double) height / 2));
+        this.Faces[3][0] = (x + width); this.Faces[3][1] = (y + ((double) height / 2));
+
+        this.Center[0] = (x + (double) (width / 2));
+        this.Center[1] = (Y + (double) (height / 2));
+
+        this.HP = HP;
+    }
+    public Enemy(double CenterX, double CenterY, int width, int height, int HP){
+        this.Width = width;
+        this.Height = height;
+
+        this.Center[0] = (CenterX);
+        this.Center[1] = (CenterY);
+
+        this.X = (int) (CenterX - ((double) width / 2));
+        this.Y = (int) (CenterY - ((double) height / 2));
+
+        this.Faces[0][0] = (X + ((double) width / 2)); this.Faces[0][1] = Y;
+        this.Faces[1][0] = (X + ((double) width / 2)); this.Faces[1][1] = (Y + height);
+        this.Faces[2][0] = X; this.Faces[2][1] = (Y + ((double) height / 2));
+        this.Faces[3][0] = (X + width); this.Faces[3][1] = (Y + ((double) height / 2));
+
+        this.HP = HP;
     }
 
     public void setVelocity(int x, int y){
@@ -132,6 +165,16 @@ public class Enemy {
         if (x_y.equalsIgnoreCase("X")) R = Faces[3][0];
         else if (x_y.equalsIgnoreCase("Y")) R = Faces[3][1];
         return R;
+    }
+
+    public void hit(){
+        if (HP > 1){
+            HP--;
+        } else if (HP == 1) {
+            setAlive(false);
+            setX(-10000000);
+            setY(-10000000);
+        }
     }
 
     public void setAlive(boolean Alive){this.Alive = Alive;}

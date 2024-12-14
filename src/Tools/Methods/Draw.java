@@ -86,7 +86,11 @@ public class Draw {
     }
 
     // Delete
-    public void delete(Player player){player.setAlive(false);}
-    public void delete(Enemy enemy){enemy.setAlive(false);}
+    public void delete(Player player){
+        player.setAlive(false);
+        player.setX(-10000000);
+        player.setY(-10000000);
+    }
+    public void delete(Enemy enemy){enemy.hit();}
 
 }
