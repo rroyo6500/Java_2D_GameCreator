@@ -39,10 +39,12 @@ public class GameEditor {
             protected void paintComponent(Graphics g){
                 super.paintComponent(g);
 
-                if (K.getUpKey() || K.getCustomKey("W")) pj.setVelocity(0, -1);
-                if (K.getDownKey() || K.getCustomKey("S")) pj.setVelocity(0, 1);
-                if (K.getLeftKey() || K.getCustomKey("A")) pj.setVelocity(-1, 0);
-                if (K.getRightKey() || K.getCustomKey("D")) pj.setVelocity(1, 0);
+                if (K.getUpKey() || K.getCustomKey("W")) pj.setVelocity(0, -2);
+                if (K.getDownKey() || K.getCustomKey("S")) pj.setVelocity(0, 2);
+                if (K.getLeftKey() || K.getCustomKey("A")) pj.setVelocity(-2, 0);
+                if (K.getRightKey() || K.getCustomKey("D")) pj.setVelocity(2, 0);
+
+                C.Collide(pj, plataforma1, "all");
 
                 D.draw(g, coin);
 
