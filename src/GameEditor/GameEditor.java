@@ -44,7 +44,10 @@ public class GameEditor {
     boolean Suelo = false;
     boolean enemy_Left = true;
 
+
     public JPanel World(){
+        pj.Sprites().setStillSprite("F:\\CEROCA-2o\\Sintesi-Programacion\\2\\web\\PR16_archivos\\image023.png");
+
         return new JPanel() {
             @Override
             protected void paintComponent(Graphics g){
@@ -90,8 +93,10 @@ public class GameEditor {
                     Suelo = true;
                 }
 
+                if (pj.getVelocityX() > 0) D.drawRotatedSprites(g, pj, pj.Sprites().still(), "x");
+                else D.drawSprites(g, pj, pj.Sprites().still());
+
                 D.draw(g, coin);
-                D.draw(g, pj);
                 D.draw(g, platform);
                 D.draw(g, enemy);
             }

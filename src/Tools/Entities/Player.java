@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 public class Player {
 
-    private Sprites Sprite = new Sprites();
+    private Sprites sprites = new Sprites();
 
     private int X, Y;
     private final int Width, Height;
@@ -166,4 +166,6 @@ public class Player {
     public void setPlayerColor(Color color){this.PlayerColor = color;}
     public Color getPlayerColor(){return PlayerColor;}
 
+    // Sprites
+    public Sprites Sprites(){return sprites;}
 }
