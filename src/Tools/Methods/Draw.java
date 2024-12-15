@@ -6,7 +6,6 @@ import Tools.World.Colectable;
 import Tools.World.Platform;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class Draw {
 
@@ -73,28 +72,6 @@ public class Draw {
         if (!colectable.getObtained()){
             g.setColor(colectable.getColectableColor());
             g.fillRect(colectable.getX(), colectable.getY(), colectable.getWidth(), colectable.getHeight());
-        }
-
-    }
-
-    // DrawSprites
-    public void drawSprites(Graphics g, Player player, BufferedImage sprite){
-
-        g.drawImage(sprite, player.getX(), player.getY(), player.getWidth(), player.getHeight(), null);
-
-    }
-    public void drawRotatedSprites(Graphics g, Player player, BufferedImage sprite, String rotation){
-
-        if (rotation.equalsIgnoreCase("x")) {
-            int X = (player.getX() + player.getWidth());
-            g.drawImage(sprite, X, player.getY(), -player.getWidth(), player.getHeight(), null);
-        } else if (rotation.equalsIgnoreCase("y")) {
-            int Y = (player.getY() + player.getHeight());
-            g.drawImage(sprite, player.getX(), Y, player.getWidth(), -player.getHeight(), null);
-        } else if (rotation.equalsIgnoreCase("xy") || rotation.equalsIgnoreCase("yx")) {
-            int X = (player.getX() + player.getWidth());
-            int Y = (player.getY() + player.getHeight());
-            g.drawImage(sprite, X, Y, -player.getWidth(), -player.getHeight(), null);
         }
 
     }

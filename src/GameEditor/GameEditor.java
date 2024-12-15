@@ -35,8 +35,8 @@ public class GameEditor {
 
     /*      AVISO:
             --> Por defecto los Enemigos tienen uno de HP.
-                En caso de que se le ponga una cantidad custom verifica que al momento de perder puntos de HP deje de estar en contacto con el jugador y/o lo que le quiete puntos de HP.
-                Si continua en contacto los puntos de HP bajaran a la mima belocidad que el FrameRate
+                En caso de que se le ponga una cantidad custom verifica que al momento de perder puntos de HP deje de estar en contacto con el jugador y/o lo que le quite puntos de HP.
+                Si continúa en contacto los puntos de HP bajarán a la misma belocidad que el FrameRate
                     FrameRate = 60
                     HP -> -60 / Segundo
      */
@@ -46,8 +46,6 @@ public class GameEditor {
 
 
     public JPanel World(){
-        pj.Sprites().setStillSprite("F:\\CEROCA-2o\\Sintesi-Programacion\\2\\web\\PR16_archivos\\image023.png");
-
         return new JPanel() {
             @Override
             protected void paintComponent(Graphics g){
@@ -92,9 +90,6 @@ public class GameEditor {
                 if (C.collide(pj, platform, "up")){
                     Suelo = true;
                 }
-
-                if (pj.getVelocityX() > 0) D.drawRotatedSprites(g, pj, pj.Sprites().still(), "x");
-                else D.drawSprites(g, pj, pj.Sprites().still());
 
                 D.draw(g, coin);
                 D.draw(g, platform);
