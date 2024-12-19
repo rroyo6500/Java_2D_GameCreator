@@ -60,11 +60,11 @@ public class Draw {
 
     // Delete
     public void delete(Entity entity){
-        if (entity.getHP() < 1){
+        if (entity.getHP() <= 1){
             entity.setVisible(false);
             entity.setX(-100000000);
             entity.setY(-100000000);
-        }else entity.setHP(entity.getHP() - 1);
+        } else entity.setHP(entity.getHP() - 1);
     }
     public void delete(Colectable colectable){
         colectable.setObtained(true);
