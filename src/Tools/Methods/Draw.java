@@ -1,7 +1,6 @@
 package Tools.Methods;
 
-import Tools.Entities.Enemy;
-import Tools.Entities.Player;
+import Tools.Entities.Entity;
 import Tools.World.Colectable;
 import Tools.World.Platform;
 
@@ -12,19 +11,19 @@ public class Draw {
     public Draw(){}
 
     // Draw
-    public void draw(Graphics g, Player player, Color color){
+    public void draw(Graphics g, Entity entity, Color color){
 
-        if (player.getAlive()){
+        if (entity.getVisible()){
             g.setColor(color);
-            g.fillRect(player.getX(), player.getY(), player.getWidth(), player.getHeight());
+            g.fillRect(entity.getX(), entity.getY(), entity.getWidth(), entity.getHeight());
         }
 
     }
-    public void draw(Graphics g, Player player){
+    public void draw(Graphics g, Entity entity){
 
-        if (player.getAlive()){
-            g.setColor(player.getPlayerColor());
-            g.fillRect(player.getX(), player.getY(), player.getWidth(), player.getHeight());
+        if (entity.getVisible()){
+            g.setColor(entity.getPlayerColor());
+            g.fillRect(entity.getX(), entity.getY(), entity.getWidth(), entity.getHeight());
         }
 
     }
@@ -39,23 +38,6 @@ public class Draw {
 
         g.setColor(platform.getPlatformColor());
         g.fillRect(platform.getX(), platform.getY(), platform.getWidth(), platform.getHeight());
-
-    }
-
-    public void draw(Graphics g, Enemy enemy, Color color){
-
-        if (enemy.getAlive()){
-            g.setColor(color);
-            g.fillRect(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight());
-        }
-
-    }
-    public void draw(Graphics g, Enemy enemy){
-
-        if (enemy.getAlive()){
-            g.setColor(enemy.getEnemyColor());
-            g.fillRect(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight());
-        }
 
     }
 
@@ -77,16 +59,17 @@ public class Draw {
     }
 
     // Delete
-    public void delete(Player player){
-        player.setAlive(false);
-        player.setX(-10000000);
-        player.setY(-10000000);
+    public void delete(Entity entity){
+        if (entity.getHP() < 1){
+            entity.setVisible(false);
+            entity.setX(-100000000);
+            entity.setY(-100000000);
+        }else entity.setHP(entity.getHP() - 1);
     }
     public void delete(Colectable colectable){
         colectable.setObtained(true);
         colectable.setX(-10000000);
         colectable.setY(-10000000);
     }
-    public void delete(Enemy enemy){enemy.hit();}
 
 }

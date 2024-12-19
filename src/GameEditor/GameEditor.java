@@ -1,8 +1,7 @@
 package GameEditor;
 
 import Main.Utils;
-import Tools.Entities.Enemy;
-import Tools.Entities.Player;
+import Tools.Entities.Entity;
 import Tools.Methods.Collide;
 import Tools.Methods.Draw;
 import Tools.Methods.Keyboard;
@@ -28,9 +27,9 @@ public class GameEditor {
     public static int Width = 1000, Height = 1000;
     public static Color BgColor = Color.black;
 
-    Player player = new Player(475, 0, 50, 50);
+    Entity pj = new Entity(475, 0, 50, 50);
     Platform platform = new Platform(495, 900, 10, 100);
-    Enemy enemy = new Enemy(10, 950, 50, 50);
+    Entity enemy = new Entity(10, 950, 50, 50, 2);
     Colectable coin = new Colectable(750, 970, 10, 10);
 
     /*      AVISO:
@@ -53,27 +52,27 @@ public class GameEditor {
 
                 if ((K.getLeftKey() || K.getCustomKey("A")) && (K.getRightKey() || K.getCustomKey("D")) && Suelo){
                     Suelo = false;
-                    player.setVelocity(player.getVelocityX(), -10);
+                    pj.setVelocity(pj.getVelocityX(), -10);
                 } else if ((K.getUpKey() || K.getCustomKey("W")) && Suelo) {
                     Suelo = false;
-                    player.setVelocity(player.getVelocityX(), -25);
+                    pj.setVelocity(pj.getVelocityX(), -25);
                 } else {
-                    if (K.getLeftKey() || K.getCustomKey("A")) player.setVelocity(-4, player.getVelocityY());
-                    if (K.getRightKey() || K.getCustomKey("D")) player.setVelocity(4, player.getVelocityY());
+                    if (K.getLeftKey() || K.getCustomKey("A")) pj.setVelocity(-4, pj.getVelocityY());
+                    if (K.getRightKey() || K.getCustomKey("D")) pj.setVelocity(4, pj.getVelocityY());
                 }
 
-                player.setVelocity(0, player.getVelocityY() + 2);
-                if (player.getFaceDown("y") > Height){
+                pj.setVelocity(0, pj.getVelocityY() + 2);
+                if (pj.getFaceDown("y") > Height){
                     Suelo = true;
-                    player.setVelocity(0, 0);
-                    player.setY(Width - player.getHeight());
+                    pj.setVelocity(0, 0);
+                    pj.setY(Width - pj.getHeight());
                 }
 
-                if (C.collide(player, enemy, "up")){
-                    Suelo = true;
+                if (C.collide(pj, enemy, "up")){
+                    pj.setVelocity(pj.getVelocityX(), -25);
                     D.delete(enemy);
-                } else if (O.overlap(player, enemy)) {
-                    D.delete(player);
+                } else if (O.overlap(pj, enemy)) {
+                    D.delete(pj);
                 }
 
                 if (enemy_Left) enemy.setVelocity(4, 0);
@@ -82,19 +81,19 @@ public class GameEditor {
                 if (C.collide(enemy, platform, "left")) enemy_Left = !enemy_Left;
                 else if (enemy.getFaceLeft("x") <= 0) enemy_Left = !enemy_Left;
 
-                if (O.overlap(coin, player)){
+                if (O.overlap(coin, pj)){
                     D.delete(coin);
                 }
 
-                C.collide(player, platform, "all");
-                if (C.collide(player, platform, "up")){
+                C.collide(pj, platform, "all");
+                if (C.collide(pj, platform, "up")){
                     Suelo = true;
                 }
 
-                D.draw(g, player);
+                D.draw(g, pj, Color.CYAN);
                 D.draw(g, coin);
                 D.draw(g, platform);
-                D.draw(g, enemy);
+                D.draw(g, enemy, Color.RED);
             }
         };
     }

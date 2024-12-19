@@ -2,7 +2,7 @@ package Tools.Entities;
 
 import java.awt.*;
 
-public class Enemy {
+public class Entity {
 
     private int X, Y;
     private final int Width, Height;
@@ -10,11 +10,11 @@ public class Enemy {
     private final double[][] Faces = new double[4][2];
     private final int[][] Vertex = new int[4][2];
     private int VelocityX, VelocityY;
-    private boolean Alive = true;
+    private boolean Visible = true;
     private int HP = 1;
-    private Color EnemyColor = Color.RED;
+    private Color PlayerColor = Color.MAGENTA;
 
-    public Enemy(int x, int y, int width, int height){
+    public Entity(int x, int y, int width, int height){
         this.Width = width;
         this.Height = height;
         this.X = x;
@@ -31,9 +31,30 @@ public class Enemy {
         this.Vertex[3][0] = (x + width); this.Vertex[3][1] = (y + height);
 
         this.Center[0] = (x + (double) (width / 2));
-        this.Center[1] = (Y + (double) (height / 2));
+        this.Center[1] = (y + (double) (height / 2));
     }
-    public Enemy(double CenterX, double CenterY, int width, int height){
+    public Entity(int x, int y, int width, int height, int HP){
+        this.HP = HP;
+
+        this.Width = width;
+        this.Height = height;
+        this.X = x;
+        this.Y = y;
+
+        this.Faces[0][0] = (x + ((double) width / 2)); this.Faces[0][1] = y;
+        this.Faces[1][0] = (x + ((double) width / 2)); this.Faces[1][1] = (y + height);
+        this.Faces[2][0] = x; this.Faces[2][1] = (y + ((double) height / 2));
+        this.Faces[3][0] = (x + width); this.Faces[3][1] = (y + ((double) height / 2));
+
+        this.Vertex[0][0] = x; this.Vertex[0][1] = y;
+        this.Vertex[1][0] = (x + width); this.Vertex[1][1] = y;
+        this.Vertex[2][0] = x; this.Vertex[2][1] = (y + height);
+        this.Vertex[3][0] = (x + width); this.Vertex[3][1] = (y + height);
+
+        this.Center[0] = (x + (double) (width / 2));
+        this.Center[1] = (y + (double) (height / 2));
+    }
+    public Entity(double CenterX, double CenterY, int width, int height){
         this.Width = width;
         this.Height = height;
 
@@ -53,28 +74,9 @@ public class Enemy {
         this.Vertex[2][0] = X; this.Vertex[2][1] = (Y + height);
         this.Vertex[3][0] = (X + width); this.Vertex[3][1] = (Y + height);
     }
-    public Enemy(int x, int y, int width, int height, int HP){
-        this.Width = width;
-        this.Height = height;
-        this.X = x;
-        this.Y = y;
-
-        this.Faces[0][0] = (x + ((double) width / 2)); this.Faces[0][1] = y;
-        this.Faces[1][0] = (x + ((double) width / 2)); this.Faces[1][1] = (y + height);
-        this.Faces[2][0] = x; this.Faces[2][1] = (y + ((double) height / 2));
-        this.Faces[3][0] = (x + width); this.Faces[3][1] = (y + ((double) height / 2));
-
-        this.Vertex[0][0] = x; this.Vertex[0][1] = y;
-        this.Vertex[1][0] = (x + width); this.Vertex[1][1] = y;
-        this.Vertex[2][0] = x; this.Vertex[2][1] = (y + height);
-        this.Vertex[3][0] = (x + width); this.Vertex[3][1] = (y + height);
-
-        this.Center[0] = (x + (double) (width / 2));
-        this.Center[1] = (Y + (double) (height / 2));
-
+    public Entity(double CenterX, double CenterY, int width, int height, int HP){
         this.HP = HP;
-    }
-    public Enemy(double CenterX, double CenterY, int width, int height, int HP){
+
         this.Width = width;
         this.Height = height;
 
@@ -93,11 +95,15 @@ public class Enemy {
         this.Vertex[1][0] = (X + width); this.Vertex[1][1] = Y;
         this.Vertex[2][0] = X; this.Vertex[2][1] = (Y + height);
         this.Vertex[3][0] = (X + width); this.Vertex[3][1] = (Y + height);
-
-        this.HP = HP;
     }
 
     public void setVelocity(int x, int y){
+
+        if (x > 48) x = 48;
+        if (x < -48) x = -48;
+        if (y > 48) y = 48;
+        if (y < -48) y = -48;
+
         this.VelocityX = x;
         this.VelocityY = y;
 
@@ -114,7 +120,7 @@ public class Enemy {
         this.Vertex[2][0] = X; this.Vertex[2][1] = (Y + Height);
         this.Vertex[3][0] = (X + Width); this.Vertex[3][1] = (Y + Height);
 
-        this.Center[0] = (x + (double) (Width / 2));
+        this.Center[0] = (X + (double) (Width / 2));
         this.Center[1] = (Y + (double) (Height / 2));
     }
 
@@ -155,9 +161,7 @@ public class Enemy {
         else if (x_y.equalsIgnoreCase("Y")) R = Center[1];
         return R;
     }
-    public double[] getCenter(){
-        return Center;
-    }
+    public double[] getCenter(){return Center;}
     public int getX(){return X;}
     public int getY(){return Y;}
     public int getWidth(){return Width;}
@@ -195,19 +199,13 @@ public class Enemy {
         return R;
     }
 
-    public void hit(){
-        if (HP > 1){
-            HP--;
-        } else if (HP == 1) {
-            setAlive(false);
-            setX(-10000000);
-            setY(-10000000);
-        }
-    }
+    public void setVisible(boolean Visible){this.Visible = Visible;}
+    public boolean getVisible(){return Visible;}
 
-    public void setAlive(boolean Alive){this.Alive = Alive;}
-    public boolean getAlive(){return Alive;}
+    public void setHP(int HP){this.HP = HP;}
+    public int getHP(){return HP;}
 
-    public void setEnemyColor(Color color){this.EnemyColor = color;}
-    public Color getEnemyColor(){return EnemyColor;}
+    public void setPlayerColor(Color color){this.PlayerColor = color;}
+    public Color getPlayerColor(){return PlayerColor;}
+
 }
