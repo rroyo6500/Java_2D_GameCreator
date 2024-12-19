@@ -11,7 +11,7 @@ public class BaseGame extends JFrame {
     static GameEditor GE = new GameEditor();
 
     public static JPanel World = GE.World();
-    java.util.Timer Repaint;
+    Timer Repaint;
 
     public BaseGame(){
         setLayout(null);

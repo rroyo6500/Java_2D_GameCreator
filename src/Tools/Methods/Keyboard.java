@@ -17,7 +17,7 @@ public class Keyboard {
 
     public Keyboard(){
         new Thread(() -> {
-            while (true){
+            /*while (true){
                 try {
                     world = BaseGame.World;
                     world.setFocusable(true);
@@ -37,9 +37,25 @@ public class Keyboard {
                     });
                     break;
                 } catch (Exception e) {
-                    System.out.println(" ");
+                    System.out.println(" a");
                 }
-            }
+            }*/
+            world = BaseGame.World;
+            world.setFocusable(true);
+            world.requestFocusInWindow();
+            world.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    activeKeys.add(e.getKeyCode());
+                    LactiveKeys.add(KeyEvent.getKeyText(e.getKeyCode()));
+                }
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                    activeKeys.remove(e.getKeyCode());
+                    LactiveKeys.remove(KeyEvent.getKeyText(e.getKeyCode()));
+                }
+            });
         }).start();
     }
 
