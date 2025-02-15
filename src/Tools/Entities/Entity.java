@@ -208,4 +208,11 @@ public class Entity {
     public void setPlayerColor(Color color){this.PlayerColor = color;}
     public Color getPlayerColor(){return PlayerColor;}
 
+
+    // Sprites
+
+    private final EntitySprites entitySprites = new EntitySprites();
+
+    public EntitySprites Sprites() {return entitySprites;}
+
 }

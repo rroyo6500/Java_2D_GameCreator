@@ -6,34 +6,37 @@ import Tools.World.Platform;
 
 public class Collide {
 
-    public Collide(){}
+    private static final Overlap o = new Overlap();
 
-    // Player - Platform
-    public boolean collide(Entity entity, Platform platform, String ColisionType){
+    public Collide() {
+    }
+
+    // Entity - Platform
+    public boolean collide(Entity entity, Platform platform, String ColisionType) {
         boolean R = false;
-        if (ColisionType.equalsIgnoreCase("down") || ColisionType.equalsIgnoreCase("all")){
-            if (collideDown(entity, platform)){
+        if (ColisionType.equalsIgnoreCase("down") || ColisionType.equalsIgnoreCase("all")) {
+            if (collideDown(entity, platform)) {
                 R = true;
                 entity.setVelocity(0, 0);
                 entity.setY((platform.getY() + platform.getHeight()));
             }
         }
-        if (ColisionType.equalsIgnoreCase("up") || ColisionType.equalsIgnoreCase("all")){
-            if (collideUp(entity, platform)){
+        if (ColisionType.equalsIgnoreCase("up") || ColisionType.equalsIgnoreCase("all")) {
+            if (collideUp(entity, platform)) {
                 R = true;
                 entity.setVelocity(0, 0);
                 entity.setY(platform.getY() - entity.getHeight());
             }
         }
-        if (ColisionType.equalsIgnoreCase("left") || ColisionType.equalsIgnoreCase("all")){
-            if (collideLeft(entity, platform)){
+        if (ColisionType.equalsIgnoreCase("left") || ColisionType.equalsIgnoreCase("all")) {
+            if (collideLeft(entity, platform)) {
                 R = true;
                 entity.setVelocity(0, entity.getVelocityY());
                 entity.setX(platform.getX() - entity.getWidth());
             }
         }
-        if (ColisionType.equalsIgnoreCase("right") || ColisionType.equalsIgnoreCase("all")){
-            if (collideRight(entity, platform)){
+        if (ColisionType.equalsIgnoreCase("right") || ColisionType.equalsIgnoreCase("all")) {
+            if (collideRight(entity, platform)) {
                 R = true;
                 entity.setVelocity(0, entity.getVelocityY());
                 entity.setX((platform.getX() + platform.getWidth()));
@@ -42,161 +45,101 @@ public class Collide {
         return R;
     }
 
-    private boolean collideUp(Entity entity, Platform platform){
+    private boolean collideUp(Entity entity, Platform platform) {
         return (
-                (entity.getVelocityY() >= 0) &&
-                (
-                        (entity.getFaceDown("y") >= platform.getFaceUp("y")) &&
-                        (
-                                (entity.getFaceDown("y") <= platform.getFaceDown("y")) ||
-                                (entity.getFaceDown("y") <= GameEditor.Height)
-                        ) &&
-                        (entity.getFaceUp("y") < platform.getFaceUp("y"))
-                ) &&
-                (entity.getFaceLeft("x") < (platform.getFaceRight("x") - 5)) &&
-                (entity.getFaceRight("x") > (platform.getFaceLeft("x") + 5))
-        );
-    }
-    private boolean collideDown(Entity entity, Platform platform){
-        return (
-                (entity.getVelocityY() <= 0) &&
-                (
-                        (entity.getFaceUp("y") <= platform.getFaceDown("y")) &&
-                        (
-                                (entity.getFaceUp("y") >= platform.getFaceUp("y")) ||
-                                (entity.getFaceUp("y") >= 0)
-                        ) &&
-                        (entity.getFaceDown("y") > platform.getFaceDown("y"))
-                ) &&
-                (entity.getFaceLeft("x") < (platform.getFaceRight("x") - 5)) &&
-                (entity.getFaceRight("x") > (platform.getFaceLeft("x") + 5))
-        );
-    }
-    private boolean collideLeft(Entity entity, Platform platform){
-        return (
-                (entity.getVelocityX() >= 0) &&
-                (
-                        (entity.getFaceRight("x") >= platform.getFaceLeft("x")) &&
-                        (
-                                (entity.getFaceRight("x") <= platform.getFaceRight("x")) ||
-                                (entity.getFaceRight("x") <= GameEditor.Width)
-                        ) &&
-                        (entity.getFaceLeft("x") < platform.getFaceLeft("x"))
-                ) &&
-                (entity.getFaceDown("y") > (platform.getFaceUp("y") + 5)) &&
-                (entity.getFaceUp("y") < (platform.getFaceDown("y") - 5))
-        );
-    }
-    private boolean collideRight(Entity entity, Platform platform){
-        return (
-                (entity.getVelocityX() <= 0) &&
-                (
-                        (entity.getFaceLeft("x") <= platform.getFaceRight("x")) &&
-                        (
-                                (entity.getFaceLeft("x") >= platform.getFaceLeft("x")) ||
-                                (entity.getFaceLeft("x") >= 0)
-                        ) &&
-                        (entity.getFaceRight("x") > platform.getFaceRight("x"))
-                ) &&
-                (entity.getFaceDown("y") > (platform.getFaceUp("y") + 5)) &&
-                (entity.getFaceUp("y") < (platform.getFaceDown("y") - 5))
+                o.overlap(entity, platform) &&
+                        entity.getVelocityY() > 0 &&
+                        entity.getY() < platform.getCenter("y")
         );
     }
 
-//----------------------------------------------------------------------------------------------------------------------
+    private boolean collideDown(Entity entity, Platform platform) {
+        return (
+                o.overlap(entity, platform) &&
+                        entity.getVelocityY() < 0 &&
+                        entity.getY() > platform.getCenter("y")
+        );
+    }
 
-    // Player - Player
-    public boolean collide(Entity entity, Entity entity1, String ColisionType){
+    private boolean collideLeft(Entity entity, Platform platform) {
+        return (
+                o.overlap(entity, platform) &&
+                        entity.getVelocityX() > 0 &&
+                        entity.getX() < platform.getCenter("x")
+        );
+    }
+
+    private boolean collideRight(Entity entity, Platform platform) {
+        return (
+                o.overlap(entity, platform) &&
+                        entity.getVelocityX() < 0 &&
+                        entity.getX() > platform.getCenter("x")
+        );
+    }
+
+    // Entity - Platform
+    public boolean collide(Entity entity, Entity entity_, String ColisionType) {
         boolean R = false;
-        if (ColisionType.equalsIgnoreCase("down") || ColisionType.equalsIgnoreCase("all")){
-            if (collideDown(entity, entity1)){
+        if (ColisionType.equalsIgnoreCase("down") || ColisionType.equalsIgnoreCase("all")) {
+            if (collideDown(entity, entity_)) {
                 R = true;
                 entity.setVelocity(0, 0);
-                entity.setY((entity1.getY() + entity1.getHeight()));
+                entity.setY((entity_.getY() + entity_.getHeight()));
             }
         }
-        if (ColisionType.equalsIgnoreCase("up") || ColisionType.equalsIgnoreCase("all")){
-            if (collideUp(entity, entity1)){
+        if (ColisionType.equalsIgnoreCase("up") || ColisionType.equalsIgnoreCase("all")) {
+            if (collideUp(entity, entity_)) {
                 R = true;
                 entity.setVelocity(0, 0);
-                entity.setY(entity1.getY() - entity.getHeight());
+                entity.setY(entity_.getY() - entity.getHeight());
             }
         }
-        if (ColisionType.equalsIgnoreCase("left") || ColisionType.equalsIgnoreCase("all")){
-            if (collideLeft(entity, entity1)){
+        if (ColisionType.equalsIgnoreCase("left") || ColisionType.equalsIgnoreCase("all")) {
+            if (collideLeft(entity, entity_)) {
                 R = true;
                 entity.setVelocity(0, entity.getVelocityY());
-                entity.setX(entity1.getX() - entity.getWidth());
+                entity.setX(entity_.getX() - entity.getWidth());
             }
         }
-        if (ColisionType.equalsIgnoreCase("right") || ColisionType.equalsIgnoreCase("all")){
-            if (collideRight(entity, entity1)){
+        if (ColisionType.equalsIgnoreCase("right") || ColisionType.equalsIgnoreCase("all")) {
+            if (collideRight(entity, entity_)) {
                 R = true;
                 entity.setVelocity(0, entity.getVelocityY());
-                entity.setX((entity1.getX() + entity1.getWidth()));
+                entity.setX((entity_.getX() + entity_.getWidth()));
             }
         }
         return R;
     }
 
-    private boolean collideUp(Entity entity, Entity entity1){
+    private boolean collideUp(Entity entity, Entity entity_) {
         return (
-                (entity.getVelocityY() >= 0) &&
-                (
-                        (entity.getFaceDown("y") >= entity1.getFaceUp("y")) &&
-                        (
-                                (entity.getFaceDown("y") <= entity1.getFaceDown("y")) ||
-                                (entity.getFaceDown("y") <= GameEditor.Height)
-                        ) &&
-                        (entity.getFaceUp("y") < entity1.getFaceUp("y"))
-                ) &&
-                (entity.getFaceLeft("x") < (entity1.getFaceRight("x") - 5)) &&
-                (entity.getFaceRight("x") > (entity1.getFaceLeft("x") + 5))
+                o.overlap(entity, entity_) &&
+                        entity.getVelocityY() > 0 &&
+                        entity.getY() < entity_.getCenter("y")
         );
     }
-    private boolean collideDown(Entity entity, Entity entity1){
+
+    private boolean collideDown(Entity entity, Entity entity_) {
         return (
-                (entity.getVelocityY() <= 0) &&
-                (
-                        (entity.getFaceUp("y") <= entity1.getFaceDown("y")) &&
-                        (
-                                (entity.getFaceUp("y") >= entity1.getFaceUp("y")) ||
-                                (entity.getFaceUp("y") >= 0)
-                        ) &&
-                        (entity.getFaceDown("y") > entity1.getFaceDown("y"))
-                ) &&
-                (entity.getFaceLeft("x") < (entity1.getFaceRight("x") - 5)) &&
-                (entity.getFaceRight("x") > (entity1.getFaceLeft("x") + 5))
+                o.overlap(entity, entity_) &&
+                        entity.getVelocityY() < 0 &&
+                        entity.getY() > entity_.getCenter("y")
         );
     }
-    private boolean collideLeft(Entity entity, Entity entity1){
+
+    private boolean collideLeft(Entity entity, Entity entity_) {
         return (
-                (entity.getVelocityX() >= 0) &&
-                (
-                        (entity.getFaceRight("x") >= entity1.getFaceLeft("x")) &&
-                        (
-                                (entity.getFaceRight("x") <= entity1.getFaceRight("x")) ||
-                                (entity.getFaceRight("x") <= GameEditor.Width)
-                        ) &&
-                        (entity.getFaceLeft("x") < entity1.getFaceLeft("x"))
-                ) &&
-                (entity.getFaceDown("y") > (entity1.getFaceUp("y") + 5)) &&
-                (entity.getFaceUp("y") < (entity1.getFaceDown("y") - 5))
+                o.overlap(entity, entity_) &&
+                        entity.getVelocityX() > 0 &&
+                        entity.getX() < entity_.getCenter("x")
         );
     }
-    private boolean collideRight(Entity entity, Entity entity1){
+
+    private boolean collideRight(Entity entity, Entity entity_) {
         return (
-                (entity.getVelocityX() <= 0) &&
-                (
-                        (entity.getFaceLeft("x") <= entity1.getFaceRight("x")) &&
-                        (
-                                (entity.getFaceLeft("x") >= entity1.getFaceLeft("x")) ||
-                                (entity.getFaceLeft("x") >= 0)
-                        ) &&
-                        (entity.getFaceRight("x") > entity1.getFaceRight("x"))
-                ) &&
-                (entity.getFaceDown("y") > (entity1.getFaceUp("y") + 5)) &&
-                (entity.getFaceUp("y") < (entity1.getFaceDown("y") - 5))
+                o.overlap(entity, entity_) &&
+                        entity.getVelocityX() < 0 &&
+                        entity.getX() > entity_.getCenter("x")
         );
     }
 }

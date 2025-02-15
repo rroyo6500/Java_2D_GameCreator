@@ -43,12 +43,13 @@ public class GameEditor {
     boolean Suelo = false;
     boolean enemy_Left = true;
 
-
     public JPanel World(){
         return new JPanel() {
             @Override
             protected void paintComponent(Graphics g){
                 super.paintComponent(g);
+
+                pj.Sprites().setEntity(pj);
 
                 if ((K.getLeftKey() || K.getCustomKey("A")) && (K.getRightKey() || K.getCustomKey("D")) && Suelo){
                     Suelo = false;
@@ -57,8 +58,12 @@ public class GameEditor {
                     Suelo = false;
                     pj.setVelocity(pj.getVelocityX(), -25);
                 } else {
-                    if (K.getLeftKey() || K.getCustomKey("A")) pj.setVelocity(-4, pj.getVelocityY());
-                    if (K.getRightKey() || K.getCustomKey("D")) pj.setVelocity(4, pj.getVelocityY());
+                    if (K.getLeftKey() || K.getCustomKey("A")) {
+                        pj.setVelocity(-4, pj.getVelocityY());
+                    }
+                    if (K.getRightKey() || K.getCustomKey("D")) {
+                        pj.setVelocity(4, pj.getVelocityY());
+                    }
                 }
 
                 pj.setVelocity(0, pj.getVelocityY() + 2);
@@ -82,7 +87,7 @@ public class GameEditor {
                 if (C.collide(enemy, platform, "left")) enemy_Left = !enemy_Left;
                 else if (enemy.getFaceLeft("x") <= 0) enemy_Left = !enemy_Left;
 
-                if (O.overlap(coin, pj)){
+                if (O.overlap(pj, coin)){
                     D.delete(coin);
                 }
 
@@ -91,7 +96,7 @@ public class GameEditor {
                     Suelo = true;
                 }
 
-                D.draw(g, pj, Color.CYAN);
+                D.draw(g, pj);
                 D.draw(g, coin);
                 D.draw(g, platform);
                 D.draw(g, enemy, Color.RED);

@@ -133,4 +133,9 @@ public class Colectable {
     public void setColectableColor(Color color){this.ColectableColor = color;}
     public Color getColectableColor(){return ColectableColor;}
 
+    // Sprites
+
+    private final WorldSprites worldSprites = new WorldSprites();
+
+    public WorldSprites Sprites(){return worldSprites;}
 }

@@ -128,4 +128,10 @@ public class Platform {
 
     public void setPlatformColor(Color color){this.PlatformColor = color;}
     public Color getPlatformColor(){return PlatformColor;}
+
+    // Sprites
+
+    private final WorldSprites worldSprites = new WorldSprites();
+
+    public WorldSprites Sprites(){return worldSprites;}
 }

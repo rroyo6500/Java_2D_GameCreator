@@ -5,6 +5,7 @@ import Tools.World.Colectable;
 import Tools.World.Platform;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Draw {
 
@@ -54,6 +55,29 @@ public class Draw {
         if (!colectable.getObtained()){
             g.setColor(colectable.getColectableColor());
             g.fillRect(colectable.getX(), colectable.getY(), colectable.getWidth(), colectable.getHeight());
+        }
+
+    }
+
+    // Draw WithSprite
+    public void drawSprite(Graphics g, Entity entity, BufferedImage sprite){
+
+        if (entity.getVisible()){
+            g.drawImage(sprite, entity.getX(), entity.getY(), entity.getWidth(), entity.getHeight(), null);
+        }
+
+    }
+
+    public void drawSprite(Graphics g, Platform platform, BufferedImage sprite){
+
+        g.drawImage(sprite, platform.getX(), platform.getY(), platform.getWidth(), platform.getHeight(), null);
+
+    }
+
+    public void drawSprite(Graphics g, Colectable colectable, BufferedImage sprite){
+
+        if (!colectable.getObtained()){
+            g.drawImage(sprite, colectable.getX(), colectable.getY(), colectable.getWidth(), colectable.getHeight(), null);
         }
 
     }
